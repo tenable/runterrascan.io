@@ -1,7 +1,7 @@
 
 # Accurics Community Repository
 
-🐳 🐳 🐳  <br> Welcome to the Accurics Repo 
+<br> Welcome to the Accurics Repo 
 
 This repo aims to centralize content (HOW-TOs, scripts, slides, events etc) curated by Accurics . The main objective is to help members of the Accurics community who share similar interests to learn from & collaborate with each other during events. This is a community oriented and run repository, which is maintained by Developer Advocates , Accurics . This is the perfect place to host projects, proofs of concept, documentation, and more...
 
