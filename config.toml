@@ -1,5 +1,5 @@
-baseURL = "/"
-title = "Goldydocs"
+baseURL = "https://terrascan.accurics.com"
+title = "TerraScan"
 
 enableRobotsTXT = true
 
