@@ -11,7 +11,6 @@ For more information about this project, visit https://terrascan.accurics.com
 
 ## Table of Contents
 
-
 -  👪 [Community Groups](#community-groups)
 -  ☎  [Communications](#communications)
 -  📆 [Community Events](#community-events)
@@ -20,8 +19,6 @@ For more information about this project, visit https://terrascan.accurics.com
 -  💬 [Community Engagements](#community-engagements)
 -  📚 [Education Resources](#education-resources)
 <br>
-
-
 
 <br>
 
@@ -60,11 +57,7 @@ For more information about this project, visit https://terrascan.accurics.com
 - [Discord](#discord)
 - [Stackoverflow](#stackoverflow)
 <br>
-
-
 <br>
-
-
 
 ### How to join Accurics Community on Discord 
 
@@ -73,8 +66,7 @@ Please help by joining the Slack channel (we like to talk about Docker in genera
 ### Contribute a Community blog
 
 - [Blogging Guidelines]()
-
-  
+ 
 ### Social Media
 
 Follow us on [Twitter](), like Docker on [Facebook]() and follow Docker on [LinkedIn]()
@@ -82,7 +74,6 @@ Follow us on [Twitter](), like Docker on [Facebook]() and follow Docker on [Link
 ### Twitter
 
 - [@AccuricsSec]
-   
    
 ### YouTube(https://www.youtube.com/user/accurics)
 Check out our YouTube page for videos of recorded talks from ,KubeCon, SANS,  DockerCon, webinars and other meetups.
@@ -102,15 +93,15 @@ Check out our YouTube page for videos of recorded talks from ,KubeCon, SANS,  Do
 
 ### Technical Handbooks
 
-
 ### Events Handbooks
-
+   - lets learn terraform with terrascan
+   - Kubernetes security 
+   - Infrastructure as code 
+   - Dockerfile
 
 ### Logos
 
-
 ## Community Engagements
-
 
 ## Education Resources
   - terreform 
