@@ -26,9 +26,9 @@ For more information about this project, visit https://terrascan.accurics.com
 <br>
 
 ## 👪 Community Groups
-      - terrascan 
- 
- 
+   
+   - terrascan 
+
 ## ☎ Communications
 
 - [Join Accurics Community Slack]
@@ -56,7 +56,6 @@ For more information about this project, visit https://terrascan.accurics.com
 
 
 ## 💬 Community Engagements
-
 
 - [Discord](#discord)
 - [Stackoverflow](#stackoverflow)
