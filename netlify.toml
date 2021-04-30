@@ -4,7 +4,7 @@
 # Default build settings
 [build]
   publish = "userguide/public"
-  command = "git submodule update -f --init && cd userguide && npm install postcss-cli && hugo --themesDir ../.."
+  command = "git submodule update -f --init && cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
 
 # "production" environment specific build settings
 [build.environment]
