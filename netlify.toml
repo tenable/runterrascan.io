@@ -1,13 +1,12 @@
-# Hugo build configuration for Netlify 
-# (https://gohugo.io/hosting-and-deployment/hosting-on-netlify/#configure-hugo-version-in-netlify)
-
-# Default build settings
 [build]
-  publish = "userguide/public"
-  command = "git submodule update -f --init && cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
+publish = "public"
+command = "git submodule update --init --recursive --depth 1 && make production-build"
 
-# "production" environment specific build settings
 [build.environment]
-  HUGO_VERSION = "0.82.0"
-  HUGO_THEME = "repo"
-  HUGO_ENV = "production"
+HUGO_VERSION = "0.82.0"
+
+[context.branch-deploy]
+command = "git submodule update --init --recursive --depth 1 && make preview-build"
+
+[context.deploy-preview]
+command = "git submodule update --init --recursive --depth 1 && make preview-build"
