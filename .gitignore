@@ -1,5 +1,10 @@
 # Hugo default output directory
 /public
+/resources
+
+# npm resources
+/node_modules
+package-lock.json
 
 ## OS Files
 # Windows
@@ -10,3 +15,8 @@ $RECYCLE.BIN/
 
 # OSX
 .DS_Store
+*~
+
+# Link checker
+bin/
+tmp/
