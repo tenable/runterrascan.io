@@ -1,239 +1,333 @@
 ---
-title: "Example Page"
-linkTitle: "Example Page"
+title: "Usage"
+linkTitle: "Usage"
 date: 2017-01-05
 description: >
-  A short lead description about this content page. It can be **bold** or _italic_ and can be split over multiple paragraphs.
+  Usage.
 ---
 
-{{% pageinfo %}}
-This is a placeholder page. Replace it with your own content.
-{{% /pageinfo %}}
+# Usage
+Terrascan is a static code analyzer for Infrastructure as Code tooling. It can executed with the native binary/executable or by using the [`docker`](#using-docker) container.
 
+## Installation
+Terrascan's binary can be found on the package for each [release](https://github.com/accurics/terrascan/releases). Here's an example of how to install it:
 
-Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://gohugo.io) should be blue with no underlines (unless hovered over).
-
-There should be whitespace between paragraphs. Vape migas chillwave sriracha poutine try-hard distillery. Tattooed shabby chic small batch, pabst art party heirloom letterpress air plant pop-up. Sustainable chia skateboard art party banjo cardigan normcore affogato vexillologist quinoa meggings man bun master cleanse shoreditch readymade. Yuccie prism four dollar toast tbh cardigan iPhone, tumblr listicle live-edge VHS. Pug lyft normcore hot chicken biodiesel, actually keffiyeh thundercats photo booth pour-over twee fam food truck microdosing banh mi. Vice activated charcoal raclette unicorn live-edge post-ironic. Heirloom vexillologist coloring book, beard deep v letterpress echo park humblebrag tilde.
-
-90's four loko seitan photo booth gochujang freegan tumeric listicle fam ugh humblebrag. Bespoke leggings gastropub, biodiesel brunch pug fashion axe meh swag art party neutra deep v chia. Enamel pin fanny pack knausgaard tofu, artisan cronut hammock meditation occupy master cleanse chartreuse lumbersexual. Kombucha kogi viral truffaut synth distillery single-origin coffee ugh slow-carb marfa selfies. Pitchfork schlitz semiotics fanny pack, ugh artisan vegan vaporware hexagon. Polaroid fixie post-ironic venmo wolf ramps **kale chips**.
-
-> There should be no margin above this first sentence.
->
-> Blockquotes should be a lighter gray with a border along the left side in the secondary color.
->
-> There should be no margin below this final sentence.
-
-## First Header 2
-
-This is a normal paragraph following a header. Knausgaard kale chips snackwave microdosing cronut copper mug swag synth bitters letterpress glossier **craft beer**. Mumblecore bushwick authentic gochujang vegan chambray meditation jean shorts irony. Viral farm-to-table kale chips, pork belly palo santo distillery activated charcoal aesthetic jianbing air plant woke lomo VHS organic. Tattooed locavore succulents heirloom, small batch sriracha echo park DIY af. Shaman you probably haven't heard of them copper mug, crucifix green juice vape *single-origin coffee* brunch actually. Mustache etsy vexillologist raclette authentic fam. Tousled beard humblebrag asymmetrical. I love turkey, I love my job, I love my friends, I love Chardonnay!
-
-Deae legum paulatimque terra, non vos mutata tacet: dic. Vocant docuique me plumas fila quin afuerunt copia haec o neque.
-
-On big screens, paragraphs and headings should not take up the full container width, but we want tables, code blocks and similar to take the full width.
-
-Scenester tumeric pickled, authentic crucifix post-ironic fam freegan VHS pork belly 8-bit yuccie PBR&B. **I love this life we live in**.
-
-
-## Second Header 2
-
-> This is a blockquote following a header. Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.
-
-### Header 3
-
-```
-This is a code block following a header.
+``` Bash
+$ curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Darwin_x86_64.tar.gz")" > terrascan.tar.gz
+$ tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
+$ install terrascan /usr/local/bin && rm terrascan
+$ terrascan
 ```
 
-Next level leggings before they sold out, PBR&B church-key shaman echo park. Kale chips occupy godard whatever pop-up freegan pork belly selfies. Gastropub Belinda subway tile woke post-ironic seitan. Shabby chic man bun semiotics vape, chia messenger bag plaid cardigan. 
+### Using Docker
+Terrascan is available as a Docker image and can used as follows:
 
-#### Header 4
-
-* This is an unordered list following a header.
-* This is an unordered list following a header.
-* This is an unordered list following a header.
-
-##### Header 5
-
-1. This is an ordered list following a header.
-2. This is an ordered list following a header.
-3. This is an ordered list following a header.
-
-###### Header 6
-
-| What      | Follows         |
-|-----------|-----------------|
-| A table   | A header        |
-| A table   | A header        |
-| A table   | A header        |
-
-----------------
-
-There's a horizontal rule above and below this.
-
-----------------
-
-Here is an unordered list:
-
-* Liverpool F.C.
-* Chelsea F.C.
-* Manchester United F.C.
-
-And an ordered list:
-
-1. Michael Brecker
-2. Seamus Blake
-3. Branford Marsalis
-
-And an unordered task list:
-
-- [x] Create a Hugo theme
-- [x] Add task lists to it
-- [ ] Take a vacation
-
-And a "mixed" task list:
-
-- [ ] Pack bags
-- ?
-- [ ] Travel!
-
-And a nested list:
-
-* Jackson 5
-  * Michael
-  * Tito
-  * Jackie
-  * Marlon
-  * Jermaine
-* TMNT
-  * Leonardo
-  * Michelangelo
-  * Donatello
-  * Raphael
-
-Definition lists can be used with Markdown syntax. Definition headers are bold.
-
-Name
-: Godzilla
-
-Born
-: 1952
-
-Birthplace
-: Japan
-
-Color
-: Green
-
-
-----------------
-
-Tables should have bold headings and alternating shaded rows.
-
-| Artist            | Album           | Year |
-|-------------------|-----------------|------|
-| Michael Jackson   | Thriller        | 1982 |
-| Prince            | Purple Rain     | 1984 |
-| Beastie Boys      | License to Ill  | 1986 |
-
-If a table is too wide, it should scroll horizontally.
-
-| Artist            | Album           | Year | Label       | Awards   | Songs     |
-|-------------------|-----------------|------|-------------|----------|-----------|
-| Michael Jackson   | Thriller        | 1982 | Epic Records | Grammy Award for Album of the Year, American Music Award for Favorite Pop/Rock Album, American Music Award for Favorite Soul/R&B Album, Brit Award for Best Selling Album, Grammy Award for Best Engineered Album, Non-Classical | Wanna Be Startin' Somethin', Baby Be Mine, The Girl Is Mine, Thriller, Beat It, Billie Jean, Human Nature, P.Y.T. (Pretty Young Thing), The Lady in My Life |
-| Prince            | Purple Rain     | 1984 | Warner Brothers Records | Grammy Award for Best Score Soundtrack for Visual Media, American Music Award for Favorite Pop/Rock Album, American Music Award for Favorite Soul/R&B Album, Brit Award for Best Soundtrack/Cast Recording, Grammy Award for Best Rock Performance by a Duo or Group with Vocal | Let's Go Crazy, Take Me With U, The Beautiful Ones, Computer Blue, Darling Nikki, When Doves Cry, I Would Die 4 U, Baby I'm a Star, Purple Rain |
-| Beastie Boys      | License to Ill  | 1986 | Mercury Records | noawardsbutthistablecelliswide | Rhymin & Stealin, The New Style, She's Crafty, Posse in Effect, Slow Ride, Girls, (You Gotta) Fight for Your Right, No Sleep Till Brooklyn, Paul Revere, Hold It Now, Hit It, Brass Monkey, Slow and Low, Time to Get Ill |
-
-----------------
-
-Code snippets like `var foo = "bar";` can be shown inline.
-
-Also, `this should vertically align` ~~`with this`~~ ~~and this~~.
-
-Code can also be shown in a block element.
-
-```
-foo := "bar";
-bar := "foo";
+``` Bash
+$ docker run accurics/terrascan
 ```
 
-Code can also use syntax highlighting.
+### Building Terrascan
+Terrascan can be built locally. This is helpful if you want to be on the latest version or when developing Terrascan.
 
-```go
-func main() {
-  input := `var foo = "bar";`
+``` Bash
+$ git clone git@github.com:accurics/terrascan.git
+$ cd terrascan
+$ make build
+$ ./bin/terrascan
+```
 
-  lexer := lexers.Get("javascript")
-  iterator, _ := lexer.Tokenise(nil, input)
-  style := styles.Get("github")
-  formatter := html.New(html.WithLineNumbers())
+## Terrascan Commands
+Terrascan's interface is divided into subcommands as follows:
 
-  var buff bytes.Buffer
-  formatter.Format(&buff, style, iterator)
+*   init = Will initialize Terrascan by downloading the latest Rego policies into ~/.terrascan. Note that the scan command will implicitly call this if it detects that there are no policies found.
+*   scan = Will scan IaC files based on the policies contained within the .terrascan directory
+*   server = Will start Terrascan's API server
+*   help = You can obtain the usage menu by typing `help` or using the `-h` flag on any subcommand (e.g. `terrascan init -h`)
 
-  fmt.Println(buff.String())
+By typing `terrascan` without flags or other arguments, you can display the usage information.
+
+``` Bash
+$ terrascan
+Terrascan
+
+Detect compliance and security violations across Infrastructure as Code to mitigate risk before provisioning cloud native infrastructure.
+For more information, please visit https://docs.accurics.com
+
+Usage:
+  terrascan [command]
+
+Available Commands:
+  help        Help about any command
+  init        Initialize Terrascan
+  scan        Detect compliance and security violations across Infrastructure as Code.
+  server      Run Terrascan as an API server
+  version     Terrascan version
+
+Flags:
+  -c, --config-path string   config file path
+  -h, --help                 help for terrascan
+  -l, --log-level string     log level (debug, info, warn, error, panic, fatal) (default "info")
+  -x, --log-type string      log output type (console, json) (default "console")
+  -o, --output string        output type (human, json, yaml, xml) (default "human")
+
+Use "terrascan [command] --help" for more information about a command.
+```
+
+### Initializing
+The initialization process downloads the latest policies from the [repository](https://github.com/accurics/terrascan) into `~/.terrascan`. The policies are located at `~/.terrascan/pkg/policies/opa/rego` and are fetched when scanning the IaC. This command is implicitly executed if the `scan` command doesn't find policies while executing.
+
+### Scanning
+The CLI will default to scanning all supported cloud providers on Terraform HCL files if the `scan` command is used with no arguments. For example, the below two commands will scan the current directory containing Terraform HCL2 files for supported providers (AWS, GCP, Azure, and GitHub) resources:
+
+``` Bash
+$ terrascan scan
+```
+
+Individual cloud providers can be specified using the -t flag as follows:
+
+``` Bash
+$ terrascan scan -t aws
+```
+
+By default Terrascan defaults to scanning Terraform HCL files, you can change the IaC provider using the -i flag. Here's an example of scanning kubernetes yaml files:
+
+``` Bash
+$ terrascan scan -i k8s
+```
+
+The `scan` command supports flags to configure: the directory being scanned, scanning of a specific file, IaC provider type, path to policies, and policy type. The full list of flags can be found by typing `terrascan scan -h`
+
+``` Bash
+$ terrascan scan -h
+Terrascan
+
+Detect compliance and security violations across Infrastructure as Code to mitigate risk before provisioning cloud native infrastructure.
+
+Usage:
+  terrascan scan [flags]
+
+Flags:
+      --config-only               will output resource config (should only be used for debugging purposes)
+  -h, --help                      help for scan
+  -d, --iac-dir string            path to a directory containing one or more IaC files (default ".")
+  -f, --iac-file string           path to a single IaC file
+  -i, --iac-type string           iac type (helm, k8s, kustomize, terraform)
+      --iac-version string        iac version (helm: v3, k8s: v1, kustomize: v3, terraform: v12, v13, v14)
+  -p, --policy-path stringArray   policy path directory
+  -t, --policy-type strings       policy type (all, aws, azure, gcp, github, k8s) (default [all])
+  -r, --remote-type string        type of remote backend (git, s3, gcs, http)
+  -u, --remote-url string         url pointing to remote IaC repository
+      --scan-rules strings        one or more rules to scan (example: --scan-rules="ruleID1,ruleID2")
+      --skip-rules strings        one or more rules to skip while scanning (example: --skip-rules="ruleID1,ruleID2")
+      --use-colors string         color output (auto, t, f) (default "auto")
+  -v, --verbose                   will show violations with details (applicable for default output)
+
+Global Flags:
+  -c, --config-path string   config file path
+  -l, --log-level string     log level (debug, info, warn, error, panic, fatal) (default "info")
+  -x, --log-type string      log output type (console, json) (default "console")
+  -o, --output string        output type (human, json, yaml, xml) (default "human")
+```
+
+By default Terrascan will output human friendly format. This can be changed to YAML, JSON, or XML by using the `-o` flag.
+
+Terrascan will exit 3 if any issues are found.
+
+#### Scanning code remotely
+
+Terrascan can download and scan remote repositories/code sources by using the `-r` and `-u` flags. Here's and example:
+
+``` Bash
+$ terrascan scan -t aws -r git -u git@github.com:accurics/KaiMonkey.git//terraform/aws
+```
+
+The URLs for the remote should follow similar naming as the source argument for modules in Terraform. More details [here](https://www.terraform.io/docs/modules/sources.html).
+
+#### Private terraform module repositories
+When scanning terraform code, terrascan will check for the presence of `~/.terraformrc`. If the file is found, and it contains credential information to authenticate to a private terraform module registry, terrascan will attempt to use the credentials when authenticating to the private repository. For more details on the format of this file, please see Terraform's [config file documentation](https://www.terraform.io/docs/cli/config/config-file.html).
+
+#### Helm
+
+Helm chart can be scanned by specifying "helm" on the -i flag as follows:
+
+```
+$ terrascan scan -i helm
+```
+
+This command will recursively look for Chart.yaml files in the current directory and scans rendered .yaml, .yml, .tpl template files found under the corresponding /templates directory.
+
+A specific directory to scan can be specified using the `-d` flag. The Helm IaC provider does not support scanning of individual files using the `-f` flag.
+
+
+#### Kustomize
+
+Kustomize chart can be scanned by specifying "kustomize" on the -i flag as follows:
+
+```
+$ terrascan scan -i kustomize
+```
+
+This command will look for a kustomization.yaml file in the current directory and scans rendered .yaml or .yml template files.
+
+A specific directory to scan can be specified using the `-d` flag. The Kustomize IaC provider does not support scanning of individual files using the `-f` flag.
+
+
+### CLI Output types
+#### Violations
+Terrascan's default output is a list of violations present in the scanned IaC.
+``` Bash
+$ terrascan scan -t aws
+results:
+  violations:
+  - rule_name: scanOnPushDisabled
+    description: Unscanned images may contain vulnerabilities
+    rule_id: AWS.ECR.DataSecurity.High.0578
+    severity: MEDIUM
+    category: Data Security
+    resource_name: scanOnPushDisabled
+    resource_type: aws_ecr_repository
+    file: ecr.tf
+    line: 1
+  count:
+    low: 0
+    medium: 1
+    high: 0
+    total: 1
+```
+##### Resource Config
+Terrascan while scanning the IaC, loads all the IaC files, creates a list of resource configs and then processes this list to report violations. For debugging purposes, it is possible to print this resource configs list as an output by providing the `--config-only` flag to the `terrascan scan` command.
+``` Bash
+$  terrascan scan -t aws --config-only
+aws_ecr_repository:
+- id: aws_ecr_repository.scanOnPushDisabled
+  name: scanOnPushDisabled
+  source: ecr.tf
+  line: 1
+  type: aws_ecr_repository
+  config:
+    image_scanning_configuration:
+    - scan_on_push:
+        value: {}
+    image_tag_mutability: MUTABLE
+    name: test
+- id: aws_ecr_repository.scanOnPushNoSet
+  name: scanOnPushNoSet
+  source: ecr.tf
+  line: 10
+  type: aws_ecr_repository
+  config:
+    image_tag_mutability: MUTABLE
+    name: test
+```
+
+### Server mode
+Server mode will execute Terrascan's API server. This is useful when using Terrascan to enforce policies in a centralized way. By default the server will be started listening in port 9010 and supports the following routes:
+
+* GET /health = Returns the health status of the server
+* POST /v1/{iacType}/{iacVersion}/{policyType}/local/file/scan} = The payload for this request should include a `file` parameter with the value being the contents of the file.
+
+You can launch server mode by executing the Terrascan CLI or with the Docker container:
+
+``` Bash
+$ terrascan server
+```
+You can also launch Terrascan using Docker:
+
+``` Bash
+$ docker run --rm --name terrascan -p 9010:9010 accurics/terrascan
+```
+
+Here's an example of how to send a request to the Terrascan server using curl:
+
+``` Bash
+$ curl -i -F "file=@aws_cloudfront_distribution.tf" localhost:9010/v1/terraform/v14/aws/local/file/scan
+HTTP/1.1 100 Continue
+
+HTTP/1.1 200 OK
+Date: Sun, 16 Aug 2020 02:45:35 GMT
+Content-Type: text/plain; charset=utf-8
+Transfer-Encoding: chunked
+
+{
+  "results": {
+    "violations": [
+      {
+        "rule_name": "cloudfrontNoGeoRestriction",
+        "description": "Ensure that geo restriction is enabled for your Amazon CloudFront CDN distribution to whitelist or blacklist a country in order to allow or restrict users in specific locations from accessing web application content.",
+        "rule_id": "AWS.CloudFront.Network Security.Low.0568",
+        "severity": "LOW",
+        "category": "Network Security",
+        "resource_name": "s3-distribution-TLS-v1",
+        "resource_type": "aws_cloudfront_distribution",
+        "file": "terrascan-492583054.tf",
+        "line": 7
+      },
+      {
+        "rule_name": "cloudfrontNoHTTPSTraffic",
+        "description": "Use encrypted connection between CloudFront and origin server",
+        "rule_id": "AWS.CloudFront.EncryptionandKeyManagement.High.0407",
+        "severity": "HIGH",
+        "category": "Encryption and Key Management",
+        "resource_name": "s3-distribution-TLS-v1",
+        "resource_type": "aws_cloudfront_distribution",
+        "file": "terrascan-492583054.tf",
+        "line": 7
+      },
+      {
+        "rule_name": "cloudfrontNoHTTPSTraffic",
+        "description": "Use encrypted connection between CloudFront and origin server",
+        "rule_id": "AWS.CloudFront.EncryptionandKeyManagement.High.0407",
+        "severity": "HIGH",
+        "category": "Encryption and Key Management",
+        "resource_name": "s3-distribution-TLS-v1",
+        "resource_type": "aws_cloudfront_distribution",
+        "file": "terrascan-492583054.tf",
+        "line": 7
+      },
+      {
+        "rule_name": "cloudfrontNoLogging",
+        "description": "Ensure that your AWS Cloudfront distributions have the Logging feature enabled in order to track all viewer requests for the content delivered through the Content Delivery Network (CDN).",
+        "rule_id": "AWS.CloudFront.Logging.Medium.0567",
+        "severity": "MEDIUM",
+        "category": "Logging",
+        "resource_name": "s3-distribution-TLS-v1",
+        "resource_type": "aws_cloudfront_distribution",
+        "file": "terrascan-492583054.tf",
+        "line": 7
+      },
+      {
+        "rule_name": "cloudfrontNoSecureCiphers",
+        "description": "Secure ciphers are not used in CloudFront distribution",
+        "rule_id": "AWS.CloudFront.EncryptionandKeyManagement.High.0408",
+        "severity": "HIGH",
+        "category": "Encryption and Key Management",
+        "resource_name": "s3-distribution-TLS-v1",
+        "resource_type": "aws_cloudfront_distribution",
+        "file": "terrascan-492583054.tf",
+        "line": 7
+      }
+    ],
+    "count": {
+      "low": 1,
+      "medium": 1,
+      "high": 3,
+      "total": 5
+    }
+  }
 }
 ```
 
+### Config File
+The `-c` or `--config-path` global variable allows you to provide a TOML configuration file for Terrascan. This file can be used to configure the webhook notifications. Here's an example configuration:
+
+``` TOML
+[notifications]
+    [notifications.webhook]
+    url = "https://httpbin.org/post"
+    token = "my_auth_token"
 ```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
 
-Inline code inside table cells should still be distinguishable.
+### Logging
+Logging can be configured by using the `-l` or `--log-level` flags with possible values being: debug, info, warn, error, panic, or fatal. This defaults to "info".
 
-| Language    | Code               |
-|-------------|--------------------|
-| Javascript  | `var foo = "bar";` |
-| Ruby        | `foo = "bar"{`      |
-
-----------------
-
-Small images should be shown at their actual size.
-
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Picea_abies_shoot_with_buds%2C_Sogndal%2C_Norway.jpg/240px-Picea_abies_shoot_with_buds%2C_Sogndal%2C_Norway.jpg)
-
-Large images should always scale down and fit in the content container.
-
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Picea_abies_shoot_with_buds%2C_Sogndal%2C_Norway.jpg/1024px-Picea_abies_shoot_with_buds%2C_Sogndal%2C_Norway.jpg)
-
-_The photo above of the Spruce Picea abies shoot with foliage buds: Bjørn Erik Pedersen, CC-BY-SA._
-
-
-## Components
-
-### Alerts
-
-{{< alert >}}This is an alert.{{< /alert >}}
-{{< alert title="Note" >}}This is an alert with a title.{{< /alert >}}
-{{% alert title="Note" %}}This is an alert with a title and **Markdown**.{{% /alert %}}
-{{< alert color="success" >}}This is a successful alert.{{< /alert >}}
-{{< alert color="warning" >}}This is a warning.{{< /alert >}}
-{{< alert color="warning" title="Warning" >}}This is a warning with a title.{{< /alert >}}
-
-
-## Another Heading
-
-Add some sections here to see how the ToC looks like. Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.
-
-### This Document
-
-Inguina genus: Anaphen post: lingua violente voce suae meus aetate diversi. Orbis unam nec flammaeque status deam Silenum erat et a ferrea. Excitus rigidum ait: vestro et Herculis convicia: nitidae deseruit coniuge Proteaque adiciam *eripitur*? Sitim noceat signa *probat quidem*. Sua longis *fugatis* quidem genae.
-
-
-### Pixel Count
-
-Tilde photo booth wayfarers cliche lomo intelligentsia man braid kombucha vaporware farm-to-table mixtape portland. PBR&B pickled cornhole ugh try-hard ethical subway tile. Fixie paleo intelligentsia pabst. Ennui waistcoat vinyl gochujang. Poutine salvia authentic affogato, chambray lumbersexual shabby chic.
-
-### Contact Info
-
-Plaid hell of cred microdosing, succulents tilde pour-over. Offal shabby chic 3 wolf moon blue bottle raw denim normcore poutine pork belly.
-
-
-### External Links
-
-Stumptown PBR&B keytar plaid street art, forage XOXO pitchfork selvage affogato green juice listicle pickled everyday carry hashtag. Organic sustainable letterpress sartorial scenester intelligentsia swag bushwick. Put a bird on it stumptown neutra locavore. IPhone typewriter messenger bag narwhal. Ennui cold-pressed seitan flannel keytar, single-origin coffee adaptogen occupy yuccie williamsburg chillwave shoreditch forage waistcoat.
-
-
-
-```
-This is the final element on the page and there should be no margin below this.
-```
+In addition to the default "console" logs, the logs can be configured to be output in JSON by using the `-x` or `--log-type` flag with the value of `json`.
