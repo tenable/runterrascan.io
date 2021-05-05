@@ -1,5 +1,5 @@
-baseURL = "https://terrascan.accurics.com"
-title = "TerraScan"
+baseURL = "https://runterrascan.io"
+title = "Terrascan"
 
 enableRobotsTXT = true
 
@@ -54,7 +54,7 @@ id = "UA-00000000-0"
 [languages]
 [languages.en]
 title = "terrascan"
-description = "A Docsy example site"
+description = "Terrascan detects security vulnerabilities and compliance violations across your Cloud Native Infrastructure"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
