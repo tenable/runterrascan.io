@@ -23,16 +23,6 @@ Here's an image (`featured-sunset-get.png`) that includes a byline and a caption
 Fetch and scale an image in the upcoming Hugo 0.43.
 {{< /imgproc >}}
 
-The front matter of this post specifies properties to be assigned to all image resources:
-
-```
-resources:
-- src: "**.{png,jpg}"
-  title: "Image #:counter"
-  params:
-    byline: "Photo: Riona MacNamara / CC-BY-CA"
-```
-
 To include the image in a page, specify its details like this:
 
 ```
@@ -82,9 +72,11 @@ To solve this I developed [Terrascan](https://github.com/accurics/terrascan). Te
 
 To install [Terrascan](https://github.com/accurics), you’ll need Python 3.6 or later installed in your system. 
 
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image1.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image1.png "image_tooltip")
+```
+{{< imgproc sunset Fill "600x300" >}}
+Fetch and scale an image in the upcoming Hugo 0.43.
+{{< /imgproc >}}
+```
 
 ```
 $ pip install terrascan
@@ -97,9 +89,11 @@ Successfully installed terrascan-0.2.1
 
 Now that you have Terrascan installed, lets scan some code. Here’s an example s3_bucket resource that’s missing encryption.
 
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image2.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-![alt_text](images/image2.png "image_tooltip")
+```
+{{< imgproc sunset Fill "600x300" >}}
+Fetch and scale an image in the upcoming Hugo 0.43.
+{{< /imgproc >}}
+```
 
 ```
 resource "aws_s3_bucket" "my_insecure_s3_bucket" {
@@ -119,10 +113,11 @@ resource "aws_s3_bucket" "my_insecure_s3_bucket" {
 
 Here are the results of running Terrascan against that resource.
 
-<p id="gdcalert3" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image3.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert4">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image3.png "image_tooltip")
+```
+{{< imgproc sunset Fill "600x300" >}}
+Fetch and scale an image in the upcoming Hugo 0.43.
+{{< /imgproc >}}
+```
 
 ```
 $ terrascan -l .
