@@ -11,8 +11,6 @@ resources:
     byline: ""
 ---
 
-# Securing Infrastructure as Code Using Terrascan
-
 I remember one of my first public cloud projects. We created a cross functional team that included representatives from the business, developers, architects, security, and operations. The goal was to have a minimum viable product for an important customer facing system as our first cloud native deployment in 12 weeks. 
 
 At first the task seemed daunting. There was a lot to learn and implement in a short period of time, and as the representative of the security team, I wanted to make sure security was embedded into every decision we made. 
