@@ -1,37 +1,15 @@
 ---
-date: 2018-10-06
-title: "Easy documentation with Docsy"
-linkTitle: "Announcing Docsy"
-description: "The Docsy Hugo theme lets project maintainers and contributors focus on content, not on reinventing a website infrastructure from scratch"
-author: Riona MacNamara ([@rionam](https://twitter.com/bepsays))
+date: 2020-06-24
+title: "Securing Infrastructure as Code Using Terrascan"
+linkTitle: "Announcing Terrascan"
+description: ""
+author: Cesar Rodriguez ([Developer Advocate](https://github.com/cesar-rodriguez))
 resources:
 - src: "**.{png,jpg}"
   title: "Image #:counter"
   params:
-    byline: "Photo: Riona MacNamara / CC-BY-CA"
+    byline: ""
 ---
-
-**This is a typical blog post that includes images.**
-
-The front matter specifies the date of the blog post, its title, a short description that will be displayed on the blog landing page, and its author.
-
-## Including images
-
-Here's an image (`featured-sunset-get.png`) that includes a byline and a caption.
-
-{{< imgproc sunset Fill "600x300" >}}
-Fetch and scale an image in the upcoming Hugo 0.43.
-{{< /imgproc >}}
-
-To include the image in a page, specify its details like this:
-
-```
-{{< imgproc sunset Fill "600x300" >}}
-Fetch and scale an image in the upcoming Hugo 0.43.
-{{< /imgproc >}}
-```
-
-The image will be rendered at the size and byline specified in the front matter.
 
 # Securing Infrastructure as Code Using Terrascan
 
@@ -73,12 +51,6 @@ To solve this I developed [Terrascan](https://github.com/accurics/terrascan). Te
 To install [Terrascan](https://github.com/accurics), you’ll need Python 3.6 or later installed in your system. 
 
 ```
-{{< imgproc sunset Fill "600x300" >}}
-Fetch and scale an image in the upcoming Hugo 0.43.
-{{< /imgproc >}}
-```
-
-```
 $ pip install terrascan
 Collecting terrascan
   Downloading terrascan-0.2.1-py2.py3-none-any.whl (28 kB)
@@ -88,12 +60,6 @@ Successfully installed terrascan-0.2.1
 ```
 
 Now that you have Terrascan installed, lets scan some code. Here’s an example s3_bucket resource that’s missing encryption.
-
-```
-{{< imgproc sunset Fill "600x300" >}}
-Fetch and scale an image in the upcoming Hugo 0.43.
-{{< /imgproc >}}
-```
 
 ```
 resource "aws_s3_bucket" "my_insecure_s3_bucket" {
@@ -112,12 +78,6 @@ resource "aws_s3_bucket" "my_insecure_s3_bucket" {
 ```
 
 Here are the results of running Terrascan against that resource.
-
-```
-{{< imgproc sunset Fill "600x300" >}}
-Fetch and scale an image in the upcoming Hugo 0.43.
-{{< /imgproc >}}
-```
 
 ```
 $ terrascan -l .
