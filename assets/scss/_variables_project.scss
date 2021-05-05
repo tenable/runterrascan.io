@@ -3,12 +3,6 @@
 Add styles or override variables from the theme here.
 
 */
-
-/*
-
-Add styles or override variables from the theme here.
-
-*/
 $enable-rounded: false;
 // $enable-shadows: false;
 
@@ -16,7 +10,7 @@ $display1-weight: 500 !default;
 $display2-weight: 100 !default;
 
 
-$primary: rgb(143, 165, 238)  !default;
+$primary: rgb(144, 163, 235)  !default;
 $primary-light: lighten($primary, 75%) !default;
 $secondary: #2D70DE !default;
 $light: rgb(255, 255,255) !default;

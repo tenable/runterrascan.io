@@ -22,12 +22,15 @@ Terrascan is a portable executable that does not strictly require installation, 
 ### Native executable
 Terrascan's [release page](https://github.com/accurics/terrascan/releases) includes builds for common platforms.  Just download and extract the package for your platform.  For example, if you use a Mac you might do this:
 
-``` Bash
+```bash
 $ curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Darwin_x86_64.tar.gz")" > terrascan.tar.gz
 $ tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
 $ install terrascan /usr/local/bin && rm terrascan
 $ terrascan
+
 ```
+
+
 
 If you want to use this executable for the rest of this quickstart, it will help to create an alias or install the executable onto your path. For example with bash you could do something like this:
 
