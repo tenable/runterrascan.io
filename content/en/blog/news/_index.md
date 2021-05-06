@@ -1,6 +1,6 @@
 
 ---
-title: "News About Docsy"
+title: "News About Terrascan"
 linkTitle: "News"
 weight: 20
 ---
