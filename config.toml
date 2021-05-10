@@ -25,7 +25,7 @@ pygmentsUseClasses = false
 pygmentsUseClassic = false
 #pygmentsOptions = "linenos=table"
 # See https://help.farbox.com/pygments.html
-pygmentsStyle = "tango"
+pygmentsStyle = "monokai"
 
 # Configure how URLs look like per section.
 [permalinks]
@@ -53,7 +53,7 @@ id = "UA-00000000-0"
 
 [languages]
 [languages.en]
-title = "terrascan"
+title = ""
 description = "Terrascan detects security vulnerabilities and compliance violations across your Cloud Native Infrastructure"
 languageName ="English"
 # Weight used for sorting.
@@ -80,9 +80,9 @@ time_format_blog = "2006.01.02"
       unsafe = true
   [markup.highlight]
       # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-      style = "tango"
+      style = "monokai"
       # Uncomment if you want your chosen highlight style used for code blocks without a specified language
-      # guessSyntax = "true"
+      guessSyntax = "true"
 
 # Everything below this are Site Params
 
@@ -91,8 +91,8 @@ time_format_blog = "2006.01.02"
 section = ["HTML", "print"]
 
 [params]
-copyright = "The Docsy Authors"
-privacy_policy = "https://policies.google.com/privacy"
+copyright = "Terrascan"
+privacy_policy = "https://www.accurics.com/privacy/"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
@@ -177,7 +177,7 @@ enable = false
         desc = "Discussion and help from your fellow users"
 [[params.links.user]]
 	name ="Twitter"
-	url = ""
+	url = "https://twitter.com/runterrascan"
 	icon = "fab fa-twitter"
         desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
@@ -202,3 +202,8 @@ enable = false
 	icon = "fa fa-envelope"
         desc = "Discuss development issues around the project"
 
+[[menu.main]]
+    name = "GitHub"
+    weight = 50
+    url = "https://github.com/accurics/terrascan"
+    pre = "<i class='fab fa-github'></i>"
