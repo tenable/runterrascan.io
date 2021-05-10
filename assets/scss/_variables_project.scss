@@ -10,9 +10,9 @@ $display1-weight: 500 !default;
 $display2-weight: 100 !default;
 
 
-$primary: rgb(144, 163, 235)  !default;
+$primary: #333F48  !default;
 $primary-light: lighten($primary, 75%) !default;
-$secondary: #2D70DE !default;
+$secondary: #3BB34A !default;
 $light: rgb(255, 255,255) !default;
 $grey:  #888 !default;
 $orange: $secondary;
