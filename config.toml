@@ -53,7 +53,7 @@ id = "UA-00000000-0"
 
 [languages]
 [languages.en]
-title = "Terrascan"
+title = ""
 description = "Terrascan detects security vulnerabilities and compliance violations across your Cloud Native Infrastructure"
 languageName ="English"
 # Weight used for sorting.
@@ -177,7 +177,7 @@ enable = false
         desc = "Discussion and help from your fellow users"
 [[params.links.user]]
 	name ="Twitter"
-	url = ""
+	url = "https://twitter.com/runterrascan"
 	icon = "fab fa-twitter"
         desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
