@@ -202,3 +202,8 @@ enable = false
 	icon = "fa fa-envelope"
         desc = "Discuss development issues around the project"
 
+[[menu.main]]
+    name = "GitHub"
+    weight = 50
+    url = "https://github.com/accurics/terrascan"
+    pre = "<i class='fab fa-github'></i>"
