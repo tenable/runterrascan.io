@@ -2,12 +2,28 @@
   publish = "public"
   command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
 
-[context.deploy-preview.environment]
-  HUGO_VERSION = "0.83.1"
+[build.environment]
+HUGO_VERSION = "0.83.1"
 
 [context.production.environment]
-  HUGO_VERSION = "0.83.1"
-  HUGO_ENV = "production"
+HUGO_BASEURL = "https://runterrascan.io/"
+HUGO_ENV = "production"
+HUGO_ENABLEGITINFO = "true"
 
-[context.branch-deploy.environment]
-  HUGO_VERSION = "0.83.1"
+[context.deploy-preview]
+command = "git submodule update --init --recursive --depth 1 && make deploy-preview"
+
+[context.branch-deploy]
+command = "git submodule update --init --recursive --depth 1 && make deploy-preview"
+
+[context.main]
+# This context is triggered by the `main` branch and allows search indexing
+publish = "public"
+command = "git submodule update --init --recursive --depth 1 && make production-build"
+
+# adding in headers to prevent clickjacking
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
