@@ -58,21 +58,6 @@ description = "Terrascan detects security vulnerabilities and compliance violati
 languageName ="English"
 # Weight used for sorting.
 weight = 1
-[languages.no]
-title = "Goldydocs"
-description = "Docsy er operativsystem for skyen"
-languageName ="Norsk"
-contentDir = "content/no"
-time_format_default = "02.01.2006"
-time_format_blog = "02.01.2006"
-
-[languages.fa]
-title = "اسناد گلدی"
-description = "یک نمونه برای پوسته داکسی"
-languageName ="فارسی"
-contentDir = "content/fa"
-time_format_default = "2006.01.02"
-time_format_blog = "2006.01.02"
 
 [markup]
   [markup.goldmark]
@@ -202,21 +187,6 @@ enable = false
 	icon = "fa fa-envelope"
         desc = "Discuss development issues around the project"
 
-[[menu.main]]
-    name = "Documentation"
-    weight = 20
-    url = "/docs/"
-    pre = "<i class='fab fa-book'></i>"
-[[menu.main]]
-    name = "Blog"
-    weight = 30
-    url = "/blog/"
-    pre = "<i class='fab fa-blog'></i>"
-[[menu.main]]
-    name = "Community"
-    weight = 40
-    url = "/community/"
-    pre = "<i class='fab fa-users'></i>"
 [[menu.main]]
     name = "GitHub"
     weight = 50
