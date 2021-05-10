@@ -58,21 +58,6 @@ description = "Terrascan detects security vulnerabilities and compliance violati
 languageName ="English"
 # Weight used for sorting.
 weight = 1
-[languages.no]
-title = "Goldydocs"
-description = "Docsy er operativsystem for skyen"
-languageName ="Norsk"
-contentDir = "content/no"
-time_format_default = "02.01.2006"
-time_format_blog = "02.01.2006"
-
-[languages.fa]
-title = "اسناد گلدی"
-description = "یک نمونه برای پوسته داکسی"
-languageName ="فارسی"
-contentDir = "content/fa"
-time_format_default = "2006.01.02"
-time_format_blog = "2006.01.02"
 
 [markup]
   [markup.goldmark]
@@ -192,9 +177,9 @@ enable = false
 	icon = "fab fa-github"
         desc = "Development takes place here!"
 [[params.links.developer]]
-	name = "Slack"
-	url = "https://example.org/slack"
-	icon = "fab fa-slack"
+	name = "Discord"
+	url = "https://discord.com/channels/811956906532929586/833684617482469376"
+	icon = "fab fa-discord"
         desc = "Chat with other project developers"
 [[params.links.developer]]
 	name = "Developer mailing list"
