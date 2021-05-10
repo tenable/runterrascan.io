@@ -11,65 +11,6 @@ This is a placeholder page that shows you how to use this template site.
 {{% /pageinfo %}}
 
 
-
-
-
-
-
-{< tabs name="Terrascan" >}}
-{{% tab name="Linux" %}}
-
-
-```bash
-tar -C /usr/local -xzf go1.15.7.linux-amd64.tar.gz
-
-```
-
-{{< note >}}
-
-{{< /note >}}
-
-
-```bash
-
-$ go version
-
-```
-
-
-{{% /tab %}}
-
-{{% tab name="Mac" %}}
-
-
-```bash
-
-$ go 
-```
-3. Confirm that the command prints the installed version of Go.
-
-
-{{% /tab %}}
-
-{{% tab name="Windows" %}}
-
-
-
-```bash
-
-$ go version
-
-```
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-
-
-
-
-
 # Quickstart
 Terrascan is a static code analyzer for Infrastructure as Code. It can be installed and run in a number of different ways, and is most often used in automated pipelines to identify policy violations before insecure infrastructure is provisioned.
 
