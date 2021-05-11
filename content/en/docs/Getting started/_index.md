@@ -10,6 +10,7 @@ description: >
 This is a placeholder page that shows you how to use this template site.
 {{% /pageinfo %}}
 
+
 # Quickstart
 Terrascan is a static code analyzer for Infrastructure as Code. It can be installed and run in a number of different ways, and is most often used in automated pipelines to identify policy violations before insecure infrastructure is provisioned.
 
