@@ -169,9 +169,9 @@ rss_sections = ["blog"]
 	icon = "fab fa-twitter"
         desc = "Follow us on Twitter to get the latest news!"
 [[params.links.user]]
-	name = "Stack Overflow"
-	url = "https://example.org/stack"
-	icon = "fab fa-stack-overflow"
+	name = "Discord"
+	url = "https://discord.com/channels/811956906532929586/833684617482469376"
+	icon = "fab fa-discord"
         desc = "Practical questions and curated answers"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
