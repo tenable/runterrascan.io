@@ -4,7 +4,7 @@ linkTitle: "Blog"
 menu:
   main:
     weight: 30
-    pre: <i class='fa fa-heart'></i>
+    pre: <i class='fa fa-blog'></i>
 ---
 
 
