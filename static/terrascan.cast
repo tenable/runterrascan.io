@@ -1,7 +1,7 @@
 {"version": 2, "width": 80, "height": 24, "timestamp": 1621429922, "env": {"SHELL": "/bin/zsh", "TERM": "xterm-256color"}}
 [0.091349, "o", "\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                               \r \r"]
-[0.092182, "o", "\u001b]7;file://sangams-MacBook-Pro.local/Users/sangam\u0007"]
-[0.100979, "o", "\r\u001b[0m\u001b[27m\u001b[24m\u001b[Jsangam@sangams-MacBook-Pro ~ % \u001b[K\u001b[?2004h"]
+[0.092182, "o", "\u001b]7;\u0007"]
+[0.100979, "o", "\u001b[?1h\u001b=\u001b[?2004h"]
 [3.50999, "o", "t"]
 [5.105867, "o", "\bte"]
 [5.63899, "o", "r"]
