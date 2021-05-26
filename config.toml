@@ -195,3 +195,9 @@ rss_sections = ["blog"]
     weight = 50
     url = "https://github.com/accurics/terrascan"
     pre = "<i class='fab fa-github'></i>"
+
+[[menu.main]]
+    name = "Discord"
+    weight = 60
+    url = "https://discord.gg/DFwXEfbjzt"
+    pre = "<i class='fab fa-discord'></i>"
