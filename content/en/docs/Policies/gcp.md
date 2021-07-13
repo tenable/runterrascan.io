@@ -1,10 +1,11 @@
 ---
-title: "GCP Policies "
-date: 2017-01-05
-weight: 6
+title: "GCP Policies"
+linkTitle: "GCP Policies"
+weight: 40
 description: >
-     Terrascan - GCP Policies 
+      terrascan - GCP Policies
 ---
+
 
 ### google_container_node_pool
 | Category | Resource | Severity | Description | Reference ID |

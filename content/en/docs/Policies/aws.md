@@ -1,11 +1,10 @@
 ---
 title: "AWS - Policies"
-date: 2017-01-05
-weight: 4
+linkTitle: "AWS - Policies"
+weight: 20
 description: >
-     terrascan - aws policies 
+      terrascan - aws policies 
 ---
-
 
 ### aws_iam_role_policy
 | Category | Resource | Severity | Description | Reference ID |

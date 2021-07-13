@@ -1,9 +1,9 @@
 ---
-title: "Azure Policies "
-date: 2017-01-05
-weight: 5
+title: "Azure Policies"
+linkTitle: "Azure Policies"
+weight: 30
 description: >
-     Terrascan - Azure Policies 
+      terrascan - Azure Policies
 ---
 
 

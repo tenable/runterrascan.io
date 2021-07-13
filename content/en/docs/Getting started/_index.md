@@ -6,32 +6,35 @@ description: >
   Getting Started With Terrascan
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+Terrascan is a static code analyzer for Infrastructure as Code. It can be installed and run in a number of different ways, and is most commonly used in automated pipelines to identify policy violations before insecure infrastructure is provisioned.
 
+## Running Terrascan for the First Time
 
-# Quickstart
-Terrascan is a static code analyzer for Infrastructure as Code. It can be installed and run in a number of different ways, and is most often used in automated pipelines to identify policy violations before insecure infrastructure is provisioned.
+Quickly get started with these common first tasks:
 
-This document will show you two different methods for running Terrascan, one that installs Terrascan locally and another that leverages a Docker container.  We will scan some vulnerable IaC to learn how that works and understand the output.  The [usage page](./usage.md) includes more information about how Terrascan can be used.
+- [Installing Terrascan](#installing-terrascan): 
+- [Scanning with Terrascan](#scanning-with-terrascan) 
 
-## Running Terrascan
+## Installing Terrascan
+Terrascan is a portable executable that does not strictly require installation, and is also available as a container image in Docker Hub. You can use Terrascan in two different methods based on your preference:
 
-Terrascan is a portable executable that does not strictly require installation, and is also available as a container image in Docker Hub.  The following sections explain how to use it as a [native executable](#native-executable) and how to use the [Docker image](#using-docker).  Choose which one you'd like to start with; you don't need to do both.
+1. [Installing Terrascan locally](#native-executable)
+2. [Using a Docker container](#using-a-docker-container)
 
 ### Native executable
-Terrascan's [release page](https://github.com/accurics/terrascan/releases) includes builds for common platforms.  Just download and extract the package for your platform.  For example, if you use a Mac you might do this:
+Terrascan's [release page](https://github.com/accurics/terrascan/releases) includes latest version of builds for common platforms.  Download and extract the package for your platform. Follow instructions that apply to your platform:
 
-```bash
+#### macOS and Linux
+Download the latest version of builds for macOS and enter the following command.
+**Note:** for linux, replace `Darwin` with `Linux`
+
+
+``` Bash
 $ curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Darwin_x86_64.tar.gz")" > terrascan.tar.gz
 $ tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
 $ install terrascan /usr/local/bin && rm terrascan
 $ terrascan
-
 ```
-
-
 
 If you want to use this executable for the rest of this quickstart, it will help to create an alias or install the executable onto your path. For example with bash you could do something like this:
 
@@ -44,27 +47,35 @@ or:
 ``` Bash
 $ alias terrascan="`pwd`/terrascan"
 ```
+#### Windows
 
-### Using Docker
-Terrascan is also available as a Docker image in Docker Hub and can be used as follows assuming you have Docker installed:
+Download the latest version of builds for Windows and enter the following command:
+
+```
+tar -zxf terrascan_<version number>_Windows_x86_64.tar.gz
+```
+
+### Using a Docker Container
+Terrascan is also available as a Docker image in Docker Hub and can be used as follows (assuming you have Docker installed):
 
 ``` Bash
 $ docker run --rm accurics/terrascan version
 ```
 
-If you want to use the Docker image for the rest of this quickstart, it will help to create an alias, script or batch file that reduces the typing necessary.  For example with bash you could do something like this:
+If you want to use the Docker image for the rest of this "Getting Started" guide, please refer to the following command. Note the volume `(-v)` that is being mapped to the docker, and modify it if necessary to suit your environment. 
 
 ``` Bash
 $ alias terrascan="docker run --rm -it -v "$(pwd):/iac" -w /iac accurics/terrascan"
 ```
 
-This command includes a few extra options that ensure Terrascan has access to the current directory when it is run.
+**Note**: This command includes a few extra options to enable Terrascan has access to the current directory when it is run.
 
 ## Scanning with Terrascan
 
-When scanning with Terrascan, it defaults to scanning all supported cloud providers on Terraform HCL files.
+### Example of interactive scan or using CLI
 
-Our [KaiMonkey project](https://github.com/accurics/KaiMonkey) contains some vulnerable Terraform files to scan. Try the following:
+
+In this example, the [KaiMonkey project](https://github.com/accurics/KaiMonkey) contains some vulnerable Terraform files to scan. To run a scan, follow these steps:
 
 ``` Bash
 $ git clone https://github.com/accurics/KaiMonkey
@@ -132,7 +143,6 @@ Violation Details -
 	Severity       :	HIGH
 	-----------------------------------------------------------------------
 
-
 Scan Summary -
 
 	File/Folder         :	/var/folders/2g/9lkfm6ld2lv350svwr15fdgc0000gn/T/x9wqg4/terraform/aws
@@ -147,10 +157,11 @@ Scan Summary -
 
 You should see a total of 9 violations, which are detailed in the output.
 
-Now that you understand how to run Terrascan, explore the other options available.  The [usage page](./usage.md) covers the options in detail, including other IaC providers (e.g. Kubernetes, Helm, etc.), limiting the scan to specific directories or files, and outputting in different formats.
+Now that you understand how to run Terrascan, you can explore various options available. The [usage page](usage/usage.md) covers the options in detail. For more information, see [Related resources](#related_resources).
 
 # Related resources
 
+* The [usage guide](usage/usage.md) explains general usage, how to scan other types of IaC (such as: Kubernetes, Helm, and Kustomize), List of other IaC providers (e.g. Kubernetes, Helm, etc.), instructions to limit the scan to specific directories or files, and generating the output in different formats.
+* The [CI/CD](integrations/overview.md) page explains how to integrate Terrascan on CI/CD pipelines.
 * [Terrascan Policy Reference](../policies.md)
-* The [usage guide](./usage.md) explains general usage and how to scan other types of IaC, such as Kubernetes, Helm, and Kustomize.
-* The [CI/CD](../cicd.md) page explains how to integrate Terrascan on CI/CD pipelines.
+

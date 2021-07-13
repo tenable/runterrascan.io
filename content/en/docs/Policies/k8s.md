@@ -1,12 +1,10 @@
-
 ---
-title: "Kubernetes Policies "
-date: 2017-01-05
-weight: 8
+title: "Kubernetes Policies"
+linkTitle: "Kubernetes Policies"
+weight: 60
 description: >
-     Terrascan - Kubernetes Policies 
+      terrascan - Kubernetes Policies
 ---
-
 
 ### kubernetes_service
 | Category | Resource | Severity | Description | Reference ID |

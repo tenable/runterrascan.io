@@ -1,10 +1,11 @@
 ---
-title: "GitHub Policies "
-date: 2017-01-05
-weight: 7
+title: "GitHub Policies"
+linkTitle: "GitHub Policies"
+weight: 50
 description: >
-     Terrascan - Github Policies 
+      terrascan - GitHub Policies
 ---
+
 
 ### github_repository
 | Category | Resource | Severity | Description | Reference ID |
@@ -22,5 +23,7 @@ description: >
 | Category | Resource | Severity | Description | Reference ID |
 | -------- | -------- | -------- | ----------- | ------------ |
 | Encryption and Key Management | github | MEDIUM | Insecure SSL is used for organization webhook. | accurics.github.EKM.1 |
+
+
 
 
