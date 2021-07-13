@@ -3,13 +3,14 @@ title: "Using Terrascan in Server mode"
 linkTitle: "Server mode"
 weight: 30
 description: >
-      server mode will execute Terrascan's API server. This is useful when using Terrascan to enforce a unified set of policies and configuration in multiple parts of the software development pipelines. It also simplifies programmatically interacting with Terrascan. By default the http server listens in port 9010 and supports routes
+      Run Terrascan as an API server
 ---
+
 
 
 [Server mode](#run-terrascan-in-server-mode) will execute Terrascan's API server. This is useful when using Terrascan to enforce a unified set of policies and configuration in multiple parts of the software development pipelines. It also simplifies programmatically interacting with Terrascan. By default the http server listens in port 9010 and supports the following routes:
 
-> **Note:** URL placeholders are equivalent to the command line flags in the [scan command](command_line_mode.md#list-of-options-for-scan-command)
+> **Note:** URL placeholders are equivalent to the command line flags in the [scan command](../command_line_mode/#list-of-options-for-scan-command)
 
 
 

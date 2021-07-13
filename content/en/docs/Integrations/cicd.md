@@ -1,9 +1,9 @@
 ---
-title: "Integrate Terrascan with CI/CD"
-linkTitle: "Integrate Terrascan with CI/CD"
+title: "Integrate Terrascan with GitHub and GitLab"
+linkTitle: "Integrate Terrascan with GitHub and GitLab"
 weight: 40
 description: >
-      Terrascan can be integrated into CI/CD pipelines to enforce security best practices as codified in the OPA rego policies included as part of Terrascan or any custom policies. This section contains examples on how to configure Terrascan in popular CI/CD tooling.
+      Terrascan can be integrated into popular source code repositories
 ---
 
 
@@ -11,12 +11,12 @@ description: >
 
 The [Terrascan GitHub Action](https://github.com/marketplace/actions/terrascan-iac-scanner) can be used as part of GitHub workflows to scan your repository for IaC issues as part of code pushes or pull requests.
 
-![Image of Terrascan action](/img/terrascan-action.png)
+![Image of Terrascan action](/images/terrascan-action.png)
 
 Using Terrascan's SARIF output, the action can include issues found during the scan within [GitHub's code scanning](https://docs.github.com/en/rest/reference/code-scanning) results for the repository.
 
 
-![Image of code scanning results](/img/code-scanning.png)
+![Image of code scanning results](/images/code-scanning.png)
 
  Below is an example workflow configuration where the action is configured to scan a repository including Terraform v14+ HCL files for AWS resources and the SARIF output of the scan is uploaded to GitHub code scanning.
 

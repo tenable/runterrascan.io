@@ -3,10 +3,10 @@ title: "Configuration Terrascan"
 linkTitle: "Configuration Terrascan"
 weight: 50
 description: >
-      You can provide a configuration file in [TOML format](https://toml.io/en/) to configure the Terrascan.
-
+      Configure Terrascan via it's configuration file.
 ---
 
+You can provide a configuration file in TOML format to configure the Terrascan.
 
 ## Command to specify config File
 

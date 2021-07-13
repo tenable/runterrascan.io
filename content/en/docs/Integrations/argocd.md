@@ -4,8 +4,6 @@ linkTitle: "Integration of Terrascan with Argo CD"
 weight: 20
 description: >
      Terrascan can be configured as an Argo CD job during the application sync process using ArgoCD’s resource hook. 
-     The PreSync resource hook is the best way to evaluate the kubernetes deployment configuration and report any
-     violations.
 ---
 
 ## Terrascan can be integrated with Argo CD in two ways

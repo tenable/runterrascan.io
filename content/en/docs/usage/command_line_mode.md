@@ -1,9 +1,9 @@
 ---
 title: "Using Terrascan in command line mode"
 linkTitle: "Using Terrascan in command line mode"
-weight: 20
+weight: 10
 description: >
-    Terrascan commands,Scanning,Configuring the output format for a scan
+    Run Terrascan in terminal. Read about flags and command line arguments.
 ---
 
 This section contains the following information:
