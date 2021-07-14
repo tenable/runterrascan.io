@@ -1,9 +1,9 @@
 ---
-title: "AWS - Policies"
-linkTitle: "AWS - Policies"
+title: "AWS Policies"
+linkTitle: "AWS Policies"
 weight: 20
 description: >
-      terrascan - aws policies 
+      
 ---
 
 ### aws_iam_role_policy

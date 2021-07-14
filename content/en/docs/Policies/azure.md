@@ -3,7 +3,7 @@ title: "Azure Policies"
 linkTitle: "Azure Policies"
 weight: 30
 description: >
-      terrascan - Azure Policies
+      
 ---
 
 

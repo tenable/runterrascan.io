@@ -3,7 +3,7 @@ title: "GitHub Policies"
 linkTitle: "GitHub Policies"
 weight: 50
 description: >
-      terrascan - GitHub Policies
+      
 ---
 
 
