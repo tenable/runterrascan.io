@@ -1,6 +1,6 @@
 ---
-title: "Integration of Terrascan with Argo CD"
-linkTitle: "Integration of Terrascan with Argo CD"
+title: "Argo CD"
+linkTitle: "Argo CD"
 weight: 20
 description: >
      Terrascan can be configured as an Argo CD job during the application sync process using ArgoCD’s resource hook. 

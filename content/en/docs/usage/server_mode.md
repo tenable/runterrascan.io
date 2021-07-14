@@ -1,5 +1,5 @@
 ---
-title: "Using Terrascan in Server mode"
+title: "Server mode"
 linkTitle: "Server mode"
 weight: 30
 description: >

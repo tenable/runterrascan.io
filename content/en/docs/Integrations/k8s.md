@@ -1,6 +1,6 @@
 ---
-title: "Using Terrascan as a Kubernetes (K8s) Admission Controller"
-linkTitle: "Using Terrascan as a Kubernetes (K8s) Admission Controller"
+title: "Kubernetes Admission Controller"
+linkTitle: "Kubernetes Admission Controller"
 weight: 10
 description: >
     Configure Terrascan as a Kubernetes Admission Controller
