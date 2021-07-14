@@ -1,6 +1,6 @@
 ---
-title: "Using Terrascan in command line mode"
-linkTitle: "Using Terrascan in command line mode"
+title: "Command Line Options"
+linkTitle: "Command Line Options"
 weight: 10
 description: >
     Run Terrascan in terminal. Read about flags and command line arguments.

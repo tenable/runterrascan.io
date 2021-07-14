@@ -1,6 +1,6 @@
 ---
-title: "Integrate Terrascan with GitHub and GitLab"
-linkTitle: "Integrate Terrascan with GitHub and GitLab"
+title: "GitHub and GitLab"
+linkTitle: "GitHub and GitLab"
 weight: 40
 description: >
       Terrascan can be integrated into popular source code repositories

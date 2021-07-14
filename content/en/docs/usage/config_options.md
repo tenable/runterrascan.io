@@ -1,6 +1,6 @@
 ---
-title: "Configuration Terrascan"
-linkTitle: "Configuration Terrascan"
+title: "Configuration File"
+linkTitle: "Configuration File"
 weight: 50
 description: >
       Configure Terrascan via it's configuration file.

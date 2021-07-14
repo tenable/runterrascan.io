@@ -1,6 +1,6 @@
 ---
-title: "Integration with Atlantis Pull Request Automation"
-linkTitle: "Integration with Atlantis Pull Request Automation"
+title: "Atlantis PR Automation"
+linkTitle: "Atlantis PR Automation"
 weight: 30
 description: >
      [Atlantis](https://www.runatlantis.io/) is a pull request automation system designed to control Terraform execution from Github commits.
