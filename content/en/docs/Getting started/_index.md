@@ -3,7 +3,7 @@ title: "Getting Started"
 linkTitle: "Getting Started"
 weight: 2
 description: >
-  Getting Started With Terrascan
+  Tutorial on how to install and run Terrascan for the first time.
 ---
 
 Terrascan is a static code analyzer for Infrastructure as Code. It can be installed and run in a number of different ways, and is most commonly used in automated pipelines to identify policy violations before insecure infrastructure is provisioned.
@@ -12,7 +12,7 @@ Terrascan is a static code analyzer for Infrastructure as Code. It can be instal
 
 Quickly get started with these common first tasks:
 
-- [Installing Terrascan](#installing-terrascan): 
+- [Installing Terrascan](#installing-terrascan) 
 - [Scanning with Terrascan](#scanning-with-terrascan) 
 
 ## Installing Terrascan
@@ -157,11 +157,11 @@ Scan Summary -
 
 You should see a total of 9 violations, which are detailed in the output.
 
-Now that you understand how to run Terrascan, you can explore various options available. The [usage page](usage/usage.md) covers the options in detail. For more information, see [Related resources](#related_resources).
+Now that you understand how to run Terrascan, you can explore various options available. The [usage page](../usage/) covers the options in detail. For more information, see [Related resources](#related_resources).
 
 # Related resources
 
-* The [usage guide](usage/usage.md) explains general usage, how to scan other types of IaC (such as: Kubernetes, Helm, and Kustomize), List of other IaC providers (e.g. Kubernetes, Helm, etc.), instructions to limit the scan to specific directories or files, and generating the output in different formats.
-* The [CI/CD](integrations/overview.md) page explains how to integrate Terrascan on CI/CD pipelines.
-* [Terrascan Policy Reference](../policies.md)
+* The [usage guide](../usage/) explains general usage, how to scan other types of IaC (such as: Kubernetes, Helm, and Kustomize), List of other IaC providers (e.g. Kubernetes, Helm, etc.), instructions to limit the scan to specific directories or files, and generating the output in different formats.
+* The [CI/CD](../integrations/) page explains how to integrate Terrascan on CI/CD pipelines.
+* [Terrascan Policy Reference](../policies/)
 

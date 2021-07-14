@@ -3,10 +3,9 @@ title: "Using Terrascan as a Kubernetes (K8s) Admission Controller"
 linkTitle: "Using Terrascan as a Kubernetes (K8s) Admission Controller"
 weight: 10
 description: >
-    Using Terrascan as a Kubernetes Admission Controller
+    Configure Terrascan as a Kubernetes Admission Controller
 ---
 
-This section provides steps to integrate Terrascan with Kubernetes.
 
 ## Overview
 Terrascan can be integrated with K8s [admissions webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/).
@@ -36,7 +35,7 @@ Create an instance of Terrascan. To scan K8s configurations, your Terrascan inst
 
 ### Step 2: Create a Terrascan config file
 
-For instructions to create a config file, see [Usage](./usage.md)
+For instructions to create a config file, see [Usage](../usage/config_options/)
 . You can create a config file that specifies which policies to use in the scan and which violations should be rejected during admission.
 
 - Policies below the [severity] level will be ignored.
