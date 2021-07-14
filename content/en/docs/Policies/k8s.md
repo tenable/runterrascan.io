@@ -3,7 +3,7 @@ title: "Kubernetes Policies"
 linkTitle: "Kubernetes Policies"
 weight: 60
 description: >
-      terrascan - Kubernetes Policies
+      
 ---
 
 ### kubernetes_service

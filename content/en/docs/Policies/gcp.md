@@ -3,7 +3,7 @@ title: "GCP Policies"
 linkTitle: "GCP Policies"
 weight: 40
 description: >
-      terrascan - GCP Policies
+      
 ---
 
 
