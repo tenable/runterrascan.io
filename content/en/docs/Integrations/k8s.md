@@ -35,7 +35,7 @@ Create an instance of Terrascan. To scan K8s configurations, your Terrascan inst
 
 ### Step 2: Create a Terrascan config file
 
-For instructions to create a config file, see [Usage](../usage/config_options/)
+For instructions to create a config file, see [Usage](../../usage/config_options/)
 . You can create a config file that specifies which policies to use in the scan and which violations should be rejected during admission.
 
 - Policies below the [severity] level will be ignored.
