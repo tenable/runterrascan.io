@@ -18,14 +18,15 @@ enableMissingTranslationPlaceholders = true
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
-# Highlighting config
+
+# Highlighting config.
 pygmentsCodeFences = true
 pygmentsUseClasses = false
 # Use the new Chroma Go highlighter in Hugo.
 pygmentsUseClassic = false
 #pygmentsOptions = "linenos=table"
 # See https://help.farbox.com/pygments.html
-pygmentsStyle = "monokai"
+pygmentsStyle = "emacs"
 
 # Configure how URLs look like per section.
 [permalinks]
@@ -124,7 +125,7 @@ offlineSearchSummaryLength = 70
 offlineSearchMaxResults = 10
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
-prism_syntax_highlighting = false
+prism_syntax_highlighting = true
 
 # User interface configuration
 [params.ui]
