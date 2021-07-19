@@ -76,7 +76,7 @@ weight = 1
 section = ["HTML", "print"]
 
 [params]
-copyright = "Terrascan"
+copyright = "Accurics"
 privacy_policy = "https://www.accurics.com/privacy/"
 
 # First one is picked as the Twitter card image if not set on page.
