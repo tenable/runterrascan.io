@@ -120,7 +120,7 @@ gcs_engine_id = "52d81aac5e2710292"
 algolia_docsearch = false
 
 #Enable offline search with Lunr.js
-offlineSearch = false
+offlineSearch = true
 offlineSearchSummaryLength = 70
 offlineSearchMaxResults = 10
 
