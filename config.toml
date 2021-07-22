@@ -117,7 +117,7 @@ github_branch= "main"
 gcs_engine_id = "52d81aac5e2710292"
 
 # Enable Algolia DocSearch
-algolia_docsearch = true
+algolia_docsearch = false
 
 #Enable offline search with Lunr.js
 offlineSearch = false
