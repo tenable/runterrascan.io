@@ -21,7 +21,7 @@
 [4.892053, "o", "\u001b[?1l\u001b>"]
 [4.892197, "o", "\u001b[?2004l\r\r\n"]
 [4.893644, "o", "\u001b]2;terrascan\u0007\u001b]1;terrascan\u0007"]
-[5.060771, "o", "Terrascan\r\n\r\nDetect compliance and security violations across Infrastructure as Code to mitigate risk before provisioning cloud native infrastructure.\r\nFor more information, please visit https://docs.accurics.com\r\n\r\n"]
+[5.060771, "o", "Terrascan\r\n\r\nDetect compliance and security violations across Infrastructure as Code to mitigate risk before provisioning cloud native infrastructure.\r\nFor more information, please visit https://runterrascan.io\r\n\r\n"]
 [5.061178, "o", "Usage:\r\n  terrascan [command]\r\n\r\nAvailable Commands:\r\n  help        Help about any command\r\n  init        Initializes Terrascan and clones policies from the Terrascan GitHub repository.\r\n  scan        Detect compliance and security violations across Infrastructure as Code.\r\n  server      Run Terrascan as an API server\r\n  version     Terrascan version\r\n\r\nFlags:\r\n  -c, --config-path string   config file path\r\n  -h, --help                 help for terrascan\r\n  -l, --log-level string     log level (debug, info, warn, error, panic, fatal) (default \"info\")\r\n  -x, --log-type string      log output type (console, json) (default \"console\")\r\n  -o, --output string        output type (human, json, yaml, xml, junit-xml) (default \"human\")\r\n\r\nUse \"terrascan [command] --help\" for more information about a command.\r\n"]
 [5.062848, "o", "\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                               \r \r"]
 [5.063253, "o", "\u001b]7;file://sangams-MacBook-Pro.local/Users/sangam\u0007"]
