@@ -28,7 +28,8 @@ At Accurics, we are most excited about how the entire workflow is managed as a s
 
 By integrating Terrascan directly into the Atlantis workflow, scan results are reported as part of the same pull request workflow, which will inform the pull request reviewer before approving. In the spirit of automation, Terrascan can fail the automated plan build if a vulnerability of a certain severity is found.
 
-![Terraform security - Terrascan finds policy violations in Atlantis workflows](atlantis_blog.png)
+![](atlantis_blog.png)
+*Terraform security - Terrascan finds policy violations in Atlantis workflows*
 
 Of course, that is not the only place that Terrascan can fit in the development lifecycle. A developer can scan their code as they are writing it. Terrascan’s Github Action can automatically scan new code as it is pushed, which could actually reduce the turnaround time for a fix. To enforce policy at the organizational level, just before code is applied as infrastructure, integrating Terrascan into the Atlantis flow provides a welcome new level of security.
 
