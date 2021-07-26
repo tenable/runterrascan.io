@@ -194,5 +194,5 @@ rss_sections = ["blog"]
 [[menu.main]]
     name = "Discord"
     weight = 60
-    url = "https://discord.gg/DFwXEfbjzt"
+    url = "https://discord.gg/VsVD53RzCT"
     pre = "<i class='fab fa-discord'></i>"
