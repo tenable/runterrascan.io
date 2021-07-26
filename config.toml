@@ -194,5 +194,5 @@ rss_sections = ["blog"]
 [[menu.main]]
     name = "Discord"
     weight = 60
-    url = "https://discord.gg/VsVD53RzCT"
+    url = "https://discord.gg/accurics-community"
     pre = "<i class='fab fa-discord'></i>"
