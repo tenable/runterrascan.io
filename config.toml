@@ -114,7 +114,8 @@ github_project_repo = "https://github.com/accurics/terrascan"
 github_branch= "main"
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
-gcs_engine_id = ""
+gcs_engine_id = "52d81aac5e2710292"
+
 
 # Enable Algolia DocSearch
 algolia_docsearch = false
@@ -134,7 +135,7 @@ sidebar_menu_compact = false
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 #  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
-sidebar_search_disable = false
+sidebar_search_disable = true
 #  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
 navbar_logo = true
 # Set to true to disable the About link in the site footer
