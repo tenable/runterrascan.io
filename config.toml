@@ -114,15 +114,17 @@ github_project_repo = "https://github.com/accurics/terrascan"
 github_branch= "main"
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
-
-gcs_engine_id = "52d81aac5e2710292"
-
+# gcs_engine_id = "52d81aac5e2710292"
 
 # Enable Algolia DocSearch
 algolia_docsearch = false
 
 #Enable offline search with Lunr.js
-offlineSearch = false
+
+offlineSearch = true
+offlineSearch = true
+offlineSearchSummaryLength = 200
+
 
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
