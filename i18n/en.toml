@@ -18,13 +18,6 @@ other = "Search this site…"
 [ui_in]
 other = "in"
 
-# Footer text
-[footer_all_rights_reserved]
-other = """
-The Linux Foundation®. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. 
-For a list of trademarks of The Linux Foundation, please see our [Trademark Usage page](https://www.linuxfoundation.org/trademark-usage). 
-Linux is a registered trademark of Linus Torvalds. [Privacy Policy](https://www.linuxfoundation.org/privacy/) and [Terms of Use](https://www.linuxfoundation.org/terms/).
-"""
 
 # Post (blog, articles etc.)
 [post_byline_by]
