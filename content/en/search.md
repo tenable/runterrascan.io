@@ -1,6 +1,6 @@
 ---
-title: Search Results
+title: Search results
 layout: search
-
 ---
+
 
