@@ -1,5 +1,6 @@
 [build]
   publish = "public"
+  command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
 
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.86.0"
@@ -8,7 +9,6 @@
 [context.production.environment]
   HUGO_VERSION = "0.86.0"
   HUGO_ENV = "production"
-  command = "cd themes/docsy && git submodule update -f --init && cd ../.. && hugo"
 
 [context.branch-deploy.environment]
   HUGO_VERSION = "0.86.0"
