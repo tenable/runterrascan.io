@@ -120,8 +120,7 @@ github_branch= "main"
 algolia_docsearch = false
 
 #Enable offline search with Lunr.js
-
-offlineSearch = true
+lunr_search = true
 offlineSearch = true
 offlineSearchSummaryLength = 200
 
