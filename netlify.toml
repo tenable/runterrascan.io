@@ -8,7 +8,7 @@
 
 [context.deploy-preview]
   HUGO_VERSION = "0.86.0"
-  command = "cd themes/docsy && git submodule update -f --init && npm install postcss-cli && deploy-preview"
+  command = "cd themes/docsy && git submodule update -f --init && npm install postcss-cli && hugo"
   HUGO_ENV = "deploy-preview"
 
 
