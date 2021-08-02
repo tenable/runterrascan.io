@@ -45,6 +45,29 @@ input[type="search"]::placeholder {
 .showcase img {
   margin: 0 30px; }
 
+.td-sidebar {
+  background-color: w !important; }
+
+.td-search-input {
+  background-color: #fff !important; }
+
+.popover.offline-search-result {
+  background-color: white !important;
+  max-width: 460px; }
+
+div.code-toolbar > .toolbar {
+  top: -.3em !important; }
+
+.option-button {
+  border-radius: 0.2rem !important;
+  margin-right: 0.2rem; }
+
+.hide {
+  display: none !important; }
+
+.card-body-blue {
+  background: #f3f9fa; }
+
 /*
 
 Bootstrap variables overrides for theme.

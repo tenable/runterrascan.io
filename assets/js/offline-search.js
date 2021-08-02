@@ -1,9 +1,8 @@
 // Adapted from code by Matt Walters https://www.mattwalters.net/posts/hugo-and-lunr/
-
-(function ($) {
+(function($) {
     'use strict';
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         const $searchInput = $('.td-search-input');
 
         //
@@ -12,16 +11,12 @@
 
         $searchInput.data('html', true);
         $searchInput.data('placement', 'bottom');
-        $searchInput.data(
-            'template',
-            '<div class="popover offline-search-result" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
-        );
 
         //
         // Register handler
         //
 
-        $searchInput.on('change', (event) => {
+        $searchInput.on('change', event => {
             render($(event.target));
 
             // Hide keyboard on mobile browser
@@ -42,26 +37,18 @@
 
         // Set up for an Ajax call to request the JSON data file that is created by Hugo's build process
         $.ajax($searchInput.data('offline-search-index-json-src')).then(
-            (data) => {
-                idx = lunr(function () {
+            data => {
+                idx = lunr(function() {
                     this.ref('ref');
-
-                    // If you added more searchable fields to the search index, list them here.
-                    // Here you can specify searchable fields to the search index - e.g. individual toxonomies for you project
-                    // With "boost" you can add weighting for specific (default weighting without boost: 1)
-                    this.field('title', { boost: 5 });
-                    this.field('categories', { boost: 3 });
-                    this.field('tags', { boost: 3 });
-                    // this.field('projects', { boost: 3 }); // example for an individual toxonomy called projects
-                    this.field('description', { boost: 2 });
+                    this.field('title', { boost: 2 });
                     this.field('body');
 
-                    data.forEach((doc) => {
+                    data.forEach(doc => {
                         this.add(doc);
 
                         resultDetails.set(doc.ref, {
                             title: doc.title,
-                            excerpt: doc.excerpt,
+                            excerpt: doc.excerpt
                         });
                     });
                 });
@@ -70,7 +57,7 @@
             }
         );
 
-        const render = ($targetSearchInput) => {
+        const render = $targetSearchInput => {
             // Dispose the previous result
             $targetSearchInput.popover('dispose');
 
@@ -88,28 +75,25 @@
             }
 
             const results = idx
-                .query((q) => {
+                .query(q => {
                     const tokens = lunr.tokenizer(searchQuery.toLowerCase());
-                    tokens.forEach((token) => {
+                    tokens.forEach(token => {
                         const queryString = token.toString();
                         q.term(queryString, {
-                            boost: 100,
+                            boost: 100
                         });
                         q.term(queryString, {
                             wildcard:
                                 lunr.Query.wildcard.LEADING |
                                 lunr.Query.wildcard.TRAILING,
-                            boost: 10,
+                            boost: 10
                         });
                         q.term(queryString, {
-                            editDistance: 2,
+                            editDistance: 2
                         });
                     });
                 })
-                .slice(
-                    0,
-                    $targetSearchInput.data('offline-search-max-results')
-                );
+                .slice(0, 10);
 
             //
             // Make result html
@@ -122,7 +106,7 @@
                     .css({
                         display: 'flex',
                         justifyContent: 'space-between',
-                        marginBottom: '1em',
+                        marginBottom: '1em'
                     })
                     .append(
                         $('<span>')
@@ -133,18 +117,15 @@
                         $('<i>')
                             .addClass('fas fa-times search-result-close-button')
                             .css({
-                                cursor: 'pointer',
+                                cursor: 'pointer'
                             })
                     )
             );
 
             const $searchResultBody = $('<div>').css({
-                maxHeight: `calc(100vh - ${
-                    $targetSearchInput.offset().top -
-                    $(window).scrollTop() +
-                    180
-                }px)`,
-                overflowY: 'auto',
+                maxHeight: `calc(100vh - ${$targetSearchInput.offset().top +
+                    180}px)`,
+                overflowY: 'auto'
             });
             $html.append($searchResultBody);
 
@@ -153,31 +134,30 @@
                     $('<p>').text(`No results found for query "${searchQuery}"`)
                 );
             } else {
-                results.forEach((r) => {
+                results.forEach(r => {
+                    const $cardHeader = $('<div>').addClass('card-header');
                     const doc = resultDetails.get(r.ref);
                     const href =
                         $searchInput.data('offline-search-base-href') +
                         r.ref.replace(/^\//, '');
 
-                    const $entry = $('<div>').addClass('mt-4');
-
-                    $entry.append(
-                        $('<small>').addClass('d-block text-muted').text(r.ref)
-                    );
-
-                    $entry.append(
+                    $cardHeader.append(
                         $('<a>')
-                            .addClass('d-block')
-                            .css({
-                                fontSize: '1.2rem',
-                            })
                             .attr('href', href)
                             .text(doc.title)
                     );
 
-                    $entry.append($('<p>').text(doc.excerpt));
+                    const $cardBody = $('<div>').addClass('card-body');
+                    $cardBody.append(
+                        $('<p>')
+                            .addClass('card-text text-muted')
+                            .text(doc.excerpt)
+                    );
 
-                    $searchResultBody.append($entry);
+                    const $card = $('<div>').addClass('card');
+                    $card.append($cardHeader).append($cardBody);
+
+                    $searchResultBody.append($card);
                 });
             }
 
@@ -188,13 +168,8 @@
                 });
             });
 
-            // Enable inline styles in popover.
-            const whiteList = $.fn.tooltip.Constructor.Default.whiteList;
-            whiteList['*'].push('style');
-
             $targetSearchInput
                 .data('content', $html[0].outerHTML)
-                .popover({ whiteList: whiteList })
                 .popover('show');
         };
     });
