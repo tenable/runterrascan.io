@@ -69,33 +69,3 @@ input[type="search"]::placeholder {
     margin: 0 30px;
 }
 
-
-.td-sidebar {
-    background-color: #9B9595 !important;
-}
-
-.td-search-input {
-    background-color: #fff !important;
-}
-
-// make search bar wider https://www.docsy.dev/docs/adding-content/navigation/#configure-local-search-with-lunr
-.popover.offline-search-result {
-    max-width: 460px;
-}
-
-div.code-toolbar > .toolbar {
-    top: -.3em !important;
-}
-
-.option-button {
-    border-radius: 0.2rem !important;
-    margin-right: 0.2rem;
-}
-
-.hide {
-    display: none !important;
-}
-
-.card-body-blue {
-    background: #f3f9fa;
-}
