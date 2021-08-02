@@ -27,7 +27,7 @@ limitations under the License.
                     }
 
                     var query = $(this).val();
-                    var searchPage = "{{ "/" | absURL }}?q=" + query;
+                    var searchPage = "{{ "/Search" | absURL }}?q=" + query;
                     document.location = searchPage;
 
                     return false;
