@@ -120,10 +120,8 @@ gcs_engine_id = "52d81aac5e2710292"
 algolia_docsearch = false
 
 #Enable offline search with Lunr.js
-lunr_search = false
-offlineSearch = true
-offlineSearchSummaryLength = 200
-offlineSearchMaxResults = 10
+offlineSearch = false
+
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
 prism_syntax_highlighting = true
