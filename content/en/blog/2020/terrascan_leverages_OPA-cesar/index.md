@@ -1,5 +1,5 @@
 ---
-date: 2020-06-24
+date: 2020-08-17
 title: "Terrascan Leverages OPA to Make Policy as Code Extensible"
 linkTitle: "Terrascan Leverages OPA"
 description: ""
