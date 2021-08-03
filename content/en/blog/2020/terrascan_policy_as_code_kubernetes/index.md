@@ -27,7 +27,7 @@ Terrascan defaults to scanning YAML and JSON files in the current directory and 
 
 By default, output is sent to the terminal in YAML format.
 
-[](terminal-recording-for-blog.gif)
+![](terminal-recording-for-blog.gif)
 
 The structured output includes a summary of the results as well as the details needed to prioritize and fix the findings.  It’s suitable for humans to read, and for programmatic processing.
 
