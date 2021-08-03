@@ -19,7 +19,7 @@ When I created [Terrascan](https://github.com/accurics/terrascan), I was working
 
 I kept thinking about the problem we had where developers relied on security experts to help them secure their Infrastructure as Code (IaC). I thought that there should be a way to automatically scan IaC similar to what we were doing for application code (e.g. Java, Python, C#, etc.), where we had static code analysis tools to give developers immediate feedback on security risks.  
 
-At the time, I couldn't find any existing [tools that could scan Terraform](https://www.accurics.com/integrations/terraform/) and meet the requirements I had.  So I put something together with some Python packages that worked with Terraform HCL, some regexes, and that's how [Terrascan was born]({{< ref "/blog/2020/Announcing Terrascan" >}}).  The project was really useful and I decided that the best way to maintain a project like this would be to open source it. 
+At the time, I couldn't find any existing [tools that could scan Terraform](https://www.accurics.com/integrations/terraform/) and meet the requirements I had.  So I put something together with some Python packages that worked with Terraform HCL, some regexes, and that's how [Terrascan was born]({{< ref "/blog/2020/securing-infrastructure-as-code-using-terrascan" >}}).  The project was really useful and I decided that the best way to maintain a project like this would be to open source it. 
 
 A couple of months ago, I joined Accurics to start the next phase in Terrascan’s journey. We have a lot of exciting ideas for Terrascan, and perhaps a few surprises in store.  The release of v1.0 is the first step on that path.
 
