@@ -22,7 +22,7 @@ Accurics is excited to announce Terrascan v1.1.0, with Kubernetes (k8s) support!
 Terrascan is usually run as a portable Go binary or a Docker container.  Its command line interface can easily be adapted to run it from a terminal, a script, from within a pipeline, and numerous other contexts.  To use it, simply run terrascan from a directory where your kubernetes project lives.
 
 ```
-~ terrascan scan -t k8s
+terrascan scan -t k8s
 ```
 
 Terrascan defaults to scanning YAML and JSON files in the current directory and subdirectories.  If your project spans multiple directories, you can use the -d option one or more times to specify which directories to scan.  

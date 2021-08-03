@@ -25,7 +25,7 @@ Getting started with Terrascan is easy, regardless of whether you use the portab
 Start in the directory where your Kustomize project is stored and launch Terrascan:
 
 ```
-~ terrrascan scan -i kustomize
+terrrascan scan -i kustomize
 ```
 
 Kustomize support is implemented as a new IaC provider, leveraging Terrascan’s extensible architecture.  The “scan” command will scan the infrastructure, and the “-i” option enables the Kustomize IaC provider.
