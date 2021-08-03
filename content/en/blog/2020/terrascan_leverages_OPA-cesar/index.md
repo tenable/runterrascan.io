@@ -1,7 +1,7 @@
 ---
 date: 2020-08-17
 title: "Terrascan Leverages OPA to Make Policy as Code Extensible"
-linkTitle: "Terrascan Leverages OPA"
+linkTitle: "Terrascan Leverages OPA to Make Policy as Code Extensible"
 description: ""
 author: Cesar Rodriguez ([Developer Advocate](https://github.com/cesar-rodriguez))
 resources:
@@ -10,7 +10,6 @@ resources:
   params:
     byline: ""
 ---
-
 I’m really excited about our release of [Terrascan](https://github.com/accurics/terrascan) v1.0!
 
 ## Brief history of Terrascan and Accurics
