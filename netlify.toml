@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "cd themes/docsy && git submodule update -f --init && npm install postcss-cli && cd ../.. && hugo"
+  command = "pwd && cd themes/docsy && git submodule update -f --init && npm install postcss-cli && cd ../.. && hugo"
 
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.86.0"

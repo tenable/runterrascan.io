@@ -19,5 +19,8 @@
     "autoprefixer": "^9.8.6",
     "postcss": "^8.2.13",
     "postcss-cli": "^7.1.2"
+  },
+  "dependencies": {
+    "lunr": "^2.3.9"
   }
 }

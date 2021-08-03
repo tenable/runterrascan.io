@@ -1,3 +1,10 @@
+---
+title: "Pre-commit hook"
+linkTitle: "Pre-commit hook"
+weight: 50
+description: >
+      Integrating Terrascan with Pre-commit to detect vulnerabilities in your IaC before you commit them.
+---
 # Integrating Terrascan with Pre-commit 
 
 ## Overview 
