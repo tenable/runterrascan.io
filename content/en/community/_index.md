@@ -21,3 +21,5 @@ menu:
     </a>
 	</center>
 </div>
+
+{{< /blocks/section >}}
