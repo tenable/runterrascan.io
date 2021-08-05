@@ -1,6 +1,6 @@
 ---
 title: "Community"
-linkTitle: "Community" 
+linkTitle: "Documentation" 
 menu:
   main:
     weight: 40
