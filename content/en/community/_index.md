@@ -6,4 +6,4 @@ menu:
     pre: <i class='fa fa-users'></i>
 ---
 
-{{< youtube videoseries?list=PL379yZYwlGSEBKy02QMY_MCGlaj5BTRJU >}}
+{{< youtube PL379yZYwlGSEBKy02QMY_MCGlaj5BTRJU >}}
