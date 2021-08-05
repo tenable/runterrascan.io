@@ -12,7 +12,6 @@ menu:
 	  <p>
       Meet, share and collaborate with other Terrascan users and contributors on our Community On Discord
     </p>
-
     <a
       class="btn btn-lg btn-primary mr-3 mb-4"
       href="https://discord.gg/accurics-community"
@@ -21,5 +20,3 @@ menu:
     </a>
 	</center>
 </div>
-
-{{< /blocks/section >}}
