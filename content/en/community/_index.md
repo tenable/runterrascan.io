@@ -1,7 +1,20 @@
 ---
 title: Community
-menu:
-  main:
-    weight: 40
-    pre: <i class='fa fa-users'></i>
+linkTitle: "Community"
+type: docs
 ---
+
+## GitHub
+
+
+## Discord Channel
+
+
+## Community Meetings
+
+
+## Get in touch
+
+
+## Contributing
+
