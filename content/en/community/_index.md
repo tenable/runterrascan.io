@@ -1,7 +1,5 @@
 ---
-title: "Community"
-linkTitle: "Community"
-layouts: community
+title: Community
 menu:
   main:
     weight: 40
