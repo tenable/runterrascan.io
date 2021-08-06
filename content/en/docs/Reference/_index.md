@@ -6,9 +6,6 @@ description: >
   Changelog
 ---
 
-# Changelog
-
-
 ## [v1.9.0](https://github.com/accurics/terrascan/tree/v1.9.0) (2021-08-06)
 
 [Full Changelog](https://github.com/accurics/terrascan/compare/v1.8.1...v1.9.0)
