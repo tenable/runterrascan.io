@@ -3,14 +3,13 @@ title: "GitHub Policies"
 linkTitle: "GitHub Policies"
 weight: 50
 description: >
-      
----
 
+---
 
 ### github_repository
 | Category | Resource | Severity | Description | Reference ID |
 | -------- | -------- | -------- | ----------- | ------------ |
-| Identity & Access Management | github | MEDIUM | Repository is Not Private. | accurics.github.IAM.1 |
+| Identity and Access Management | github | MEDIUM | Repository is Not Private. | accurics.github.IAM.1 |
 
 
 ### github_repository_webhook
@@ -23,7 +22,3 @@ description: >
 | Category | Resource | Severity | Description | Reference ID |
 | -------- | -------- | -------- | ----------- | ------------ |
 | Encryption and Key Management | github | MEDIUM | Insecure SSL is used for organization webhook. | accurics.github.EKM.1 |
-
-
-
-
