@@ -200,7 +200,9 @@ Terrascan can display vulnerabilities for Docker images present in the IaC files
 $ terrascan scan -i <IaC Provider> --find-vuln
 ```
 
-This command looks for all the Docker images present in the IaC files being scanned and retrieves any vulnerabilities as reported by it's container registry. Supported container registries include: AWS Elastic Container Registry (ECR), Azure Container Registry, Google Container Registry, and Google Artifact Registry.
+This command looks for all the Docker images present in the IaC files being scanned and retrieves any vulnerabilities as reported by it's container registry.
+
+**Supported container registries**: AWS Elastic Container Registry (ECR), Azure Container Registry, Google Container Registry, and Google Artifact Registry.
 
 The following environment variables are required when connecting to the container registries:
 
