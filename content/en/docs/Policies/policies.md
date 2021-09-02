@@ -90,7 +90,7 @@ A successful policy will trigger the following output:
 
 ### The Rule JSON file
 
-The rule files follow this naming convention: `AC_<policy_type>_<next_available_rule_number>.json` where `<policy_type` is the upper case of any supported policy types by terrascan. These can be fetched from the `terrascan scan -h` help menu.
+The rule files follow this naming convention: `AC_<policy_type>_<next_available_rule_number>.json` where `<policy_type>` is the upper case of any supported policy types by terrascan. The supported policy types can be fetched from Terrascan's help menu: `terrascan scan -h | grep "policy-type"`.
 
 >**Note**: The previous naming convention was: `<cloud-provider>.<resource-type>.<rule-category>.<severity>.<next-available-rule-number>.json`. This has been deprecated.
 
