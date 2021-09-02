@@ -6,11 +6,11 @@ description: >
     Configuring policies, and writing custom ones.
 ---
 
-Terrascan policies are written using the [Rego policy language](https://www.openpolicyagent.org/docs/latest/policy-language/). With each rego policy a JSON "rule" file is included which defines metadata for the policy. Policies included within Terrascan are stored in the [pkg/policies/opa/rego](https://github.com/accurics/terrascan/tree/master/pkg/policies/opa/rego) directory.
+Terrascan policies are written using the [Rego policy language](https://www.openpolicyagent.org/docs/latest/policy-language/). With each rego policy, a JSON "rule" file is included which defines metadata for the policy. Policies included within Terrascan are stored in the [pkg/policies/opa/rego](https://github.com/accurics/terrascan/tree/master/pkg/policies/opa/rego) directory.
 
 ## Updating Terrascan with the latest policies
 
-The first time using Terrascan, if the `-p` flag is not specified, Terrascan will download the latest policies from the Terrascan repository. To update with the latest policies remove the `~/.terrascan` directory from your system and run `terrascan init`.
+The first time using Terrascan, if the `-p` flag is not specified, Terrascan will download the latest policies from the Terrascan repository. You can update your local environment to the latest policies published in the repository by running `terrascan init`.
 
 ## Ignoring Policies on a scan
 
@@ -18,7 +18,7 @@ Terrascan keeps a copy of policies on your local filesystem on the `~/.terrascan
 
 ## Adding policies
 
-For each policy there are 2 files required by Terrascan, a rule `.json` file with metadata for the policy and a `.opa` [rego](https://www.openpolicyagent.org/docs/latest/policy-language/) file for the policy itself.
+For each policy, there are 2 files required by Terrascan, a rule `.json` file with metadata for the policy and a `.rego` [rego](https://www.openpolicyagent.org/docs/latest/policy-language/) file for the policy itself.
 
 ### Writing an OPA rego policy file
 The input for the rego policies is the normalized input from the IaC provider. When writing policies you can obtain this as a normalized `.json` by using the `--config-only` flag of the scan command in combination with `-o json`. Let's use this Terraform HCL file for example:
@@ -90,32 +90,40 @@ A successful policy will trigger the following output:
 
 ### The Rule JSON file
 
-The rule files follow this naming convention: `<cloud-provider>.<resource-type>.<rule-category>.<severity>.<next-available-rule-number>.json`
+The rule files follow this naming convention: `AC_<policy_type>_<next_available_rule_number>.json` where `<policy_type` is the upper case of any supported policy types by terrascan. These can be fetched from the `terrascan scan -h` help menu.
+
+>**Note**: The previous naming convention was: `<cloud-provider>.<resource-type>.<rule-category>.<severity>.<next-available-rule-number>.json`. This has been deprecated.
 
 Here's an example of the contents of a rule file:
 
 ``` json
 {
-    "name": "unrestrictedIngressAccess",
-    "file": "unrestrictedIngressAccess.rego",
-    "template_args": {
-        "prefix": ""
-    },
-    "severity": "HIGH",
-    "description": " It is recommended that no security group allows unrestricted ingress access",
-    "reference_id": "AWS.SecurityGroup.NetworkSecurity.High.0094",
-    "category": "Network Ports Security",
-    "version": 2
+	"name": "unrestrictedIngressAccess",
+	"file": "unrestrictedIngressAccess.rego",
+	"policy_type": "aws",
+	"resource_type": "aws_db_security_group",
+	"template_args": {
+		"name": "unrestrictedIngressAccess",
+		"prefix": "",
+		"suffix": ""
+	},
+	"severity": "HIGH",
+	"description": "It is recommended that no security group allows unrestricted ingress access",
+	"category": "NETWORK_SECURITY",
+	"version": 1,
+	"id": "AC_AWS_0001"
 }
 ```
 
 | Key                  | Value                                         |
 | -------------------- | --------------------------------------------- |
 | name                 | Short name for the rule                       |
-| file                 | File name of the Rego policy                  |
-| template_args.prefix | Used for making rego policies unique          |
+| file                 | Filename of the Rego policy                  |
+| policy_type          | Type of cloud provider used by this rule (e.g. aws, azure, docker, gcp, github, k8s, etc.) |
+| resource_type        | IaC resource applicable to the policy         |
+| template_args        | Used for making rego policies unique          |
 | severity             | Likelihood * impact of issue                  |
 | description          | Description of the issue found with this rule |
-| ruleReferenceId      | Unique ID of the rule in the format `<cloud-provider>.<resource-type>.<rule-category>.<severity>.<next-available-rule-number>` |
-| category            | Descriptive category for this rule    |
-| version             | Version number for the rule/rego      |
+| ruleReferenceId (*deprecated*) | This field was used in previous versions of Terrascan, but has been replaced by *id*. |
+| category            | Descriptive category for this rule             |
+| version             | Version number for the rule/rego               |
