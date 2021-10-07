@@ -192,15 +192,15 @@ This command looks for a `Dockerfile` in the current directory and scans that fi
 
 A specific directory to scan can be specified using the `-d` flag. With the `-d` flag, it will check for all the docker files (named as `Dockerfile`) in the provided directory recursively. A specific dockerfile can be scanned using `-f` flag by providing a path to the file.
 
-### Retrieve Docker Image Vulnerabilities
+### Retrieve Container Image Vulnerabilities
 
-Terrascan can display vulnerabilities for Docker images present in the IaC files being scanned by specifying the `--find-vuln` flag along with the scan command as follows:
+Terrascan can display vulnerabilities for container images present in the IaC files being scanned by specifying the `--find-vuln` flag along with the scan command as follows:
 
 ```
 $ terrascan scan -i <IaC Provider> --find-vuln
 ```
 
-This command looks for Docker images referenced in the IaC files and retrieves any vulnerabilities as reported by its container registry.
+This command looks for container images referenced in the IaC files and retrieves any vulnerabilities as reported by its container registry.
 
 **Supported container registries**: AWS Elastic Container Registry (ECR), Azure Container Registry, Google Container Registry, Google Artifact Registry, and Harbor Container Registry.
 
