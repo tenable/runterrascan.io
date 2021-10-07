@@ -192,17 +192,17 @@ This command looks for a `Dockerfile` in the current directory and scans that fi
 
 A specific directory to scan can be specified using the `-d` flag. With the `-d` flag, it will check for all the docker files (named as `Dockerfile`) in the provided directory recursively. A specific dockerfile can be scanned using `-f` flag by providing a path to the file.
 
-### Retrieve Docker Image Vulnerabilities
+### Retrieve Container Image Vulnerabilities
 
-Terrascan can display vulnerabilities for Docker images present in the IaC files being scanned by specifying the `--find-vuln` flag along with the scan command as follows:
+Terrascan can display vulnerabilities for container images present in the IaC files being scanned by specifying the `--find-vuln` flag along with the scan command as follows:
 
 ```
 $ terrascan scan -i <IaC Provider> --find-vuln
 ```
 
-This command looks for all the Docker images present in the IaC files being scanned and retrieves any vulnerabilities as reported by it's container registry.
+This command looks for container images referenced in the IaC files and retrieves any vulnerabilities as reported by its container registry.
 
-**Supported container registries**: AWS Elastic Container Registry (ECR), Azure Container Registry, Google Container Registry, and Google Artifact Registry.
+**Supported container registries**: AWS Elastic Container Registry (ECR), Azure Container Registry, Google Container Registry, Google Artifact Registry, and Harbor Container Registry.
 
 The following environment variables are required when connecting to the container registries:
 
@@ -231,6 +231,14 @@ Terrascan also requires the password to the registry set into the `AZURE_ACR_PAS
 ``` Bash
 az acr credential show --name RegistryName
 ```
+
+#### Harbor Container Registry
+
+When integrating vulnerability results from Harbor, Terrascan requires the `HARBOR_REGISTRY_USERNAME`, `HARBOR_REGISTRY_PASSWORD`,`HARBOR_REGISTRY_CACERT`, `HARBOR_SKIP_TLS`, and `HARBOR_REGISTRY_DOMAIN` environment variables.
+
+The `HARBOR_REGISTRY_DOMAIN` environment variable helps Terrascan identify the registry's domain.
+
+The `HARBOR_SKIP_TLS` environment variable can be set to `true` to avoid TLS errors when Harbor is using a non-trusted TLS certificate. This is not recommended for production use.
 
 ### Resource Config
 While scanning a IaC, Terrascan loads all the IaC files, creates a list of resource configs and then processes this list to report violations. For debugging purposes, you can print this resource configs list as an output by using the `--config-only` flag to the `terrascan scan` command.
