@@ -244,27 +244,78 @@ The `HARBOR_SKIP_TLS` environment variable can be set to `true` to avoid TLS err
 While scanning a IaC, Terrascan loads all the IaC files, creates a list of resource configs and then processes this list to report violations. For debugging purposes, you can print this resource configs list as an output by using the `--config-only` flag to the `terrascan scan` command.
 
 ``` Bash
-$  terrascan scan -t aws --config-only
-aws_ecr_repository:
-- id: aws_ecr_repository.scanOnPushDisabled
-  name: scanOnPushDisabled
-  source: ecr.tf
-  line: 1
-  type: aws_ecr_repository
-  config:
-    image_scanning_configuration:
-    - scan_on_push:
-        value: {}
-    image_tag_mutability: MUTABLE
-    name: test
-- id: aws_ecr_repository.scanOnPushNoSet
-  name: scanOnPushNoSet
-  source: ecr.tf
-  line: 10
-  type: aws_ecr_repository
-  config:
-    image_tag_mutability: MUTABLE
-    name: test
+$  terrascan scan -i terraform -t aws -f elb.tf --config-only -o json
+{
+  "aws_elb": [
+    {
+      "id": "aws_elb.public_elb",
+      "name": "public_elb",
+      "module_name": "root",
+      "source": "elb.tf",
+      "line": 1,
+      "type": "aws_elb",
+      "config": {
+        "connection_draining": true,
+        "health_check": [
+          {
+            "healthy_threshold": 2,
+            "interval": 15,
+            "target": "HTTP:80/index.html",
+            "timeout": 3,
+            "unhealthy_threshold": 2
+          }
+        ],
+        "instances": "${aws_instance.web.*.id}",
+        "listener": [
+          {
+            "instance_port": 80,
+            "instance_protocol": "http",
+            "lb_port": 80,
+            "lb_protocol": "http"
+          }
+        ],
+        "name": "${local.prefix.value}-public-elb",
+        "security_groups": [
+          "${aws_security_group.public_internet.id}"
+        ],
+        "subnets": "${aws_subnet.public.*.id}",
+        "tags": {
+          "Name": "${local.prefix.value}-public-elb"
+        }
+      },
+      "line_config": {
+        "connection_draining": 16,
+        "health_check": [
+          {
+            "healthy_threshold": 9,
+            "interval": 13,
+            "target": 12,
+            "timeout": 11,
+            "unhealthy_threshold": 10
+          }
+        ],
+        "instances": 6,
+        "listener": [
+          {
+            "instance_port": 18,
+            "instance_protocol": 19,
+            "lb_port": 20,
+            "lb_protocol": 21
+          }
+        ],
+        "name": 2,
+        "security_groups": 5,
+        "subnets": 4,
+        "tags": {
+          "Name": 25
+        }
+      },
+      "skip_rules": null,
+      "max_severity": "",
+      "min_severity": ""
+    }
+  ]
+}
 ```
 ## More details on scan command
 
