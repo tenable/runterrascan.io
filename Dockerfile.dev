@@ -1,0 +1,11 @@
+FROM ubuntu
+
+RUN apt update
+RUN DEBIAN_FRONTEND='noninteractive' apt-get -y install tzdata
+RUN apt install -y git npm hugo
+
+WORKDIR /app
+
+EXPOSE 1313
+
+CMD sh -c "cd themes/docsy && git submodule update -f --init --recursive && npm install postcss-cli && cd ../.. && hugo server -DF --bind 0.0.0.0"
