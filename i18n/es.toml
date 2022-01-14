@@ -1,0 +1,36 @@
+
+
+# UI strings. Buttons and similar.
+
+[ui_pager_prev]
+other = "Anterior"
+
+[ui_pager_next]
+other = "Siguiente"
+
+[ui_read_more]
+other = "Leer mas"
+
+[ui_search]
+other = "Buscar en este sitio..."
+
+# Used in sentences such as "Posted in News"
+[ui_in]
+other = "en"
+
+
+# Post (blog, articles etc.)
+[post_byline_by]
+other = "Por"
+[post_created]
+other = "Creado"
+[post_last_mod]
+other = "Última modificación"
+[post_edit_this]
+other = "Editar esta página"
+[post_create_issue]
+other = "Crear incidencia sobre la documentación"
+[post_create_project_issue]
+other = "Crear una incidencia sobre el  proyecto"
+[post_posts_in]
+other = "Publicaciones en"
