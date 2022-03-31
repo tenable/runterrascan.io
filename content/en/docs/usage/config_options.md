@@ -38,6 +38,10 @@ level = "medium"
     denied-severity = "high"
     dashboard=true
 
+[policy]
+environment = "<environment_url>"
+access_token = "<access_token>"
+
 ```
 
 You can specify the following configurations:
@@ -55,6 +59,16 @@ You can specify the following configurations:
 *  **denied-categories** - Violations from these policy categories will lead to an admission rejection. Policy violations of other categories will lead to warnings.
 *  **dashboard=true** - enable the `/logs` endpoint to log and graphically display K8s admission requests and violations. Default is `false`
 
+
+**policy** - Config options for policy source and destination path information
+*  **path** - Sets the local path for terrascan files including policies
+*  **rego_subdir** - Sub directory within the base path for caching policies
+
+*  **repo_url** - Repository from which all the policies must be downloaded
+*  **branch** - Specific branch out of the repository to pull the policies
+
+*  **environment** - Authenticated environment URL for downloading policies. _Supercedes_ any other source if its set along with a valid access token
+*  **access_token** - Authentication token to download policies from authenticated environment
 
 ## Logging
 Logging can be configured by using the `-l` or `--log-level` flags with possible values being: debug, info, warn, error, panic, or fatal. This defaults to "info".
