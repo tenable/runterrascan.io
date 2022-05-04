@@ -350,7 +350,7 @@ $  terrascan scan -i terraform -t aws -f elb.tf --config-only -o json
 | ----------- | ----------- |------------|
 | -c | Use this to specify config file settings | Format supported is `*.TOML` |
 | -l | Use this to specify what log settings | debug, **info**, warn, error, panic, fatal  |
-| --log-output-dir | Use this to specify the directory path for writing scan logs and output files along with console output. In case the directory could not be resolved, the scan logs and results will be printed on console only. |
+| --log-output-dir | Use this to specify the directory path for writing the scan output to files along with console output. Using this flag will generate `two` files in the directory path provided, `terrascan.log` and `scan-result.<ext>`. The scan-result file extension will be in sync with `-o` flag (e.g. `-o json` will create scan-result.json). In case the directory could not be resolved, the scan logs and results will be printed on console only. |
 | -x | Use this to specify the log file format | **console**, json |
 | -o | Use this to specify the scan output type | **human**, json, yaml, xml, junit-xml, sarif, github-sarif |
 | --temp-dir | Use this to specify temporary directory path to download remote repository,module and templates |
