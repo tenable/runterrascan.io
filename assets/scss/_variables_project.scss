@@ -9,11 +9,11 @@ $enable-rounded: true;
 $display1-weight: 500 !default;
 $display2-weight: 100 !default;
 
-
-$primary: #333F48  !default;
-$primary-light: lighten($primary, 75%) !default;
-$secondary: #3BB34A !default;
-$light: #F2F2F2 !default;
+$dark :#425363 !default;
+$primary: #041E42 !default;
+$primary-light: lighten($primary, 70%) !default;
+$secondary: #005CB9 !default;
+$light: #425363 !default;
 $grey:  #333F48 !default;
 $orange: $secondary;
 
@@ -25,11 +25,11 @@ $google_font_family: "Roboto Slab:300,300i,400,400i,700,700i";
 }
 
 .navbar-brand {
-    color: black !important
+    color: #041E42 !important
 }
 
 .navbar-bg-onscroll {
-    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    box-shadow: 0 2px 2px -2px rgba(40, 32, 189, 0.2);
     #agones-top {
         display: block !important;
     }
@@ -41,7 +41,7 @@ $google_font_family: "Roboto Slab:300,300i,400,400i,700,700i";
 
 .asciinema-theme-asciinema .asciinema-terminal {
     color: #cccccc;
-    background-color: #121314;
+    background-color: #041E42;
     border-color: #121314;
     border-radius: 8px;
 }
@@ -58,7 +58,7 @@ input[type="search"]::placeholder {
 }
 
 .td-box--secondary p > a:hover {
-    color: #121314 !important;
+    color: #4253 !important;
 }
 
 #community a {
@@ -97,5 +97,5 @@ div.code-toolbar > .toolbar {
 }
 
 .card-body-blue {
-    background: #f3f9fa;
+    background: #425363;
 }
