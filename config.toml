@@ -78,8 +78,8 @@ section = ["HTML", "print"]
 home = ["HTML", "RSS", "JSON"]
 
 [params]
-copyright = "Accurics"
-privacy_policy = "https://www.accurics.com/privacy/"
+copyright = "Tenable"
+privacy_policy = "https://www.tenable.com/privacy-policy"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
