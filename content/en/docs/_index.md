@@ -9,6 +9,6 @@ menu:
 ---
 
 
-![Terrascan_Logo](/images/Terrascan_By_Accurics_Logo_38B34A-333F48.svg)
+![Terrascan_Logo](/images/TerrascanTM_BY_Logo.png)
 
 # Table of Contents
