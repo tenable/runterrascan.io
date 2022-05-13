@@ -20,11 +20,11 @@ resources:
 
 This is a very powerful way to manage complex cloud infrastructure across multiple teams. Moreover, the version control system naturally provides useful features like version control, permission management and audit logs.
 
-At Accurics, we are most excited about how the entire workflow is managed as a single pull request thread. Moreover, at the end of the process, the Terraform code repository should reflect the actual deployed infrastructure. While not explicitly a GitOps approach for Terraform automation, a lot of the core tenets are present. We work well in GitOps workflows, so we decided to explore whether we can seamlessly integrate Terrascan into the Atlantis workflow. 
+At Tenable, we are most excited about how the entire workflow is managed as a single pull request thread. Moreover, at the end of the process, the Terraform code repository should reflect the actual deployed infrastructure. While not explicitly a GitOps approach for Terraform automation, a lot of the core tenets are present. We work well in GitOps workflows, so we decided to explore whether we can seamlessly integrate Terrascan into the Atlantis workflow. 
 
 ## Terraform Security with Atlantis and Terrascan
 
-[Terrascan](https://github.com/accurics/terrascan) is an infrastructure as Code (IaC) security scanner. Powered by hundreds of OPA’s Rego security policies, it scans Terraform source code and detects security vulnerabilities embedded within them. It allows users to fix vulnerable infrastructure before it is ever deployed. Scanning can be done at different stages of the deployment lifecycle. Ideally, it would be done in multiple stages.
+[Terrascan](https://github.com/tenable/terrascan) is an infrastructure as Code (IaC) security scanner. Powered by hundreds of OPA’s Rego security policies, it scans Terraform source code and detects security vulnerabilities embedded within them. It allows users to fix vulnerable infrastructure before it is ever deployed. Scanning can be done at different stages of the deployment lifecycle. Ideally, it would be done in multiple stages.
 
 By integrating Terrascan directly into the Atlantis workflow, scan results are reported as part of the same pull request workflow, which will inform the pull request reviewer before approving. In the spirit of automation, Terrascan can fail the automated plan build if a vulnerability of a certain severity is found.
 
