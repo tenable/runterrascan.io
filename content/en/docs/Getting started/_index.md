@@ -30,7 +30,7 @@ Download the latest version of builds for macOS and enter the following command.
 
 
 ``` Bash
-$ curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Darwin_x86_64.tar.gz")" > terrascan.tar.gz
+$ curl -L "$(curl -s https://api.github.com/repos/tenable/terrascan/releases/latest | grep -o -E "https://.+?_Darwin_x86_64.tar.gz")" > terrascan.tar.gz
 $ tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
 $ install terrascan /usr/local/bin && rm terrascan
 $ terrascan
@@ -59,13 +59,13 @@ tar -zxf terrascan_<version number>_Windows_x86_64.tar.gz
 Terrascan is also available as a Docker image in Docker Hub and can be used as follows (assuming you have Docker installed):
 
 ``` Bash
-$ docker run --rm accurics/terrascan version
+$ docker run --rm tenable/terrascan version
 ```
 
 If you want to use the Docker image for the rest of this "Getting Started" guide, please refer to the following command. Note the volume `(-v)` that is being mapped to the docker, and modify it if necessary to suit your environment. 
 
 ``` Bash
-$ alias terrascan="docker run --rm -it -v "$(pwd):/iac" -w /iac accurics/terrascan"
+$ alias terrascan="docker run --rm -it -v "$(pwd):/iac" -w /iac tenable/terrascan"
 ```
 
 **Note**: This command includes a few extra options to enable Terrascan has access to the current directory when it is run.
@@ -75,10 +75,10 @@ $ alias terrascan="docker run --rm -it -v "$(pwd):/iac" -w /iac accurics/terrasc
 ### Example of interactive scan or using CLI
 
 
-In this example, the [KaiMonkey project](https://github.com/accurics/KaiMonkey) contains some vulnerable Terraform files to scan. To run a scan, follow these steps:
+In this example, the [KaiMonkey project](https://github.com/tenable/KaiMonkey) contains some vulnerable Terraform files to scan. To run a scan, follow these steps:
 
 ``` Bash
-$ git clone https://github.com/accurics/KaiMonkey
+$ git clone https://github.com/tenable/KaiMonkey
 ...
 $ cd KaiMonkey/terraform/aws
 $ terrascan scan
