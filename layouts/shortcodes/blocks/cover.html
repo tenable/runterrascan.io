@@ -1,6 +1,17 @@
 {{ $col_id := .Get "color" | default "dark" }}
 {{/* Height can be one of: auto, min, med, max, full. */}}
 {{ $height := .Get "height" | default "max"  }}
+
+<nav class="js-navbar-scroll navbar navbar-expand-md navbar-dark {{ if $cover}} td-navbar-cover {{ end }} td-navbar py-2" style="top: 40px;">
+	<a href="https://github.com/kyverno/kyverno/" target="_blank" class="d-block fixed-top px-3 py-2 bg-secondary text-center text-bold text-dark">⭐️ Star on GitHub to follow ⭐️</a>
+<a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
+		<span class="navbar-logo">{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }} {{ end }}</span><span class="brand-name text-uppercase font-weight-bold">{{ .Site.Title }}</span>
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_navbar"
+		aria-controls="main_navbar" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+  
 <section class="row td-cover-block td-cover-block--height-{{ $height }} js-td-cover td-overlay td-overlay--light -bg-{{ $col_id }}">
   <div class="container td-overlay__inner">
     <div class="row align-items-end">
