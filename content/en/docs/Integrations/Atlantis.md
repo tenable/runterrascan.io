@@ -57,7 +57,7 @@ workflows:
 ```
 ### Script configuration
 
-Modify the `terrascan-remote-scan.sh` script according your environment. The script is [located here](https://github.com/accurics/terrascan/tree/master/scripts). Open the script with your any editor of your choice and review the following six settings which is found at the top of the file:
+Modify the `terrascan-remote-scan.sh` script according your environment. The script is [located here](https://github.com/tenable/terrascan/tree/master/scripts). Open the script with your any editor of your choice and review the following six settings which is found at the top of the file:
 
 ```
 TERRASCAN_SERVER=192.168.1.55
@@ -113,7 +113,7 @@ In code repository, usage is exactly the same as atlantis, add a comment `atlant
 ##### To use the default built-in container image:
 
 ```
-docker pull accurics/terrascan_atlantis
+docker pull tenable/terrascan_atlantis
 ```
 
 ##### To build your own container image:
@@ -128,7 +128,7 @@ docker run \
 --env-file=<.env-file> \
 -p 4141:4141 \
 -v <pwd>/config_data/:/etc/terrascan/ \
-accurics/terrascan_atlantis server \
+tenable/terrascan_atlantis server \
 --gh-user="$USERNAME" --gh-token="$TOKEN" --gh-webhook-secret="$SECRET" \
 --repo-allowlist="$REPO_ALLOWLIST" \
 -c /etc/terrascan/config.toml
@@ -136,7 +136,7 @@ accurics/terrascan_atlantis server \
 
 The syntax of the Atlantis server command here is same as in [atlantis docs](https://www.runatlantis.io/docs/), except for an optional `-c` flag which can be used to specify the file path for the toml config to be used by Terrascan. Another way to provide the toml config filepath would be the TERRASCAN_CONFIG environment variable. You need to provide all the environment variables that terraform requires to operate with your respective cloud providers.
 
-> **Note**: As a good practice, Terrascan recommends use of a [specific tag](https://hub.docker.com/r/accurics/terrascan_atlantis/tags) of the container image rather than the latest tag.
+> **Note**: As a good practice, Terrascan recommends use of a [specific tag](https://hub.docker.com/r/tenable/terrascan_atlantis/tags) of the container image rather than the latest tag.
 
 [comment]: <> (Moved the workflow yaml note to above where its mentioned)
 

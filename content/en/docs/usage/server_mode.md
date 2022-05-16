@@ -18,7 +18,7 @@ description: >
 
 ### Check health of server
 
-* `GET - /health` 
+* `GET - /health`
 
 ### Scan IaC File
 
@@ -43,7 +43,7 @@ $ terrascan server
 Use this command to launch Terrascan server mode using Docker:
 
 ``` Bash
-$ docker run --rm --name terrascan -p 9010:9010 accurics/terrascan
+$ docker run --rm --name terrascan -p 9010:9010 tenable/terrascan
 ```
 
 ### Example of how to send a request to the Terrascan server using curl:
