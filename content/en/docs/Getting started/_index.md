@@ -12,8 +12,8 @@ Terrascan is a static code analyzer for Infrastructure as Code. It can be instal
 
 Quickly get started with these common first tasks:
 
-- [Installing Terrascan](#installing-terrascan) 
-- [Scanning with Terrascan](#scanning-with-terrascan) 
+- [Installing Terrascan](#installing-terrascan)
+- [Scanning with Terrascan](#scanning-with-terrascan)
 
 ## Installing Terrascan
 Terrascan is a portable executable that does not strictly require installation, and is also available as a container image in Docker Hub. You can use Terrascan in two different methods based on your preference:
@@ -22,7 +22,7 @@ Terrascan is a portable executable that does not strictly require installation, 
 2. [Using a Docker container](#using-a-docker-container)
 
 ### Native executable
-Terrascan's [release page](https://github.com/accurics/terrascan/releases) includes latest version of builds for common platforms.  Download and extract the package for your platform. Follow instructions that apply to your platform:
+Terrascan's [release page](https://github.com/tenable/terrascan/releases) includes latest version of builds for common platforms.  Download and extract the package for your platform. Follow instructions that apply to your platform:
 
 #### macOS and Linux
 Download the latest version of builds for macOS and enter the following command.
@@ -62,7 +62,7 @@ Terrascan is also available as a Docker image in Docker Hub and can be used as f
 $ docker run --rm tenable/terrascan version
 ```
 
-If you want to use the Docker image for the rest of this "Getting Started" guide, please refer to the following command. Note the volume `(-v)` that is being mapped to the docker, and modify it if necessary to suit your environment. 
+If you want to use the Docker image for the rest of this "Getting Started" guide, please refer to the following command. Note the volume `(-v)` that is being mapped to the docker, and modify it if necessary to suit your environment.
 
 ``` Bash
 $ alias terrascan="docker run --rm -it -v "$(pwd):/iac" -w /iac tenable/terrascan"

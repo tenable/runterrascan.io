@@ -53,7 +53,7 @@ Use "terrascan [command] --help" for more information about a command.
 
 ## Initializing (optional)
 
-The initialization process downloads the latest policies from the [repository](https://github.com/accurics/terrascan) into `~/.terrascan`.
+The initialization process downloads the latest policies from the [repository](https://github.com/tenable/terrascan) into `~/.terrascan`.
 By default the policies are installed here: `~/.terrascan/pkg/policies/opa/rego` and are fetched while scanning an IaC.
 Use the following command to start the initialization process if you are updating the policies:
 
@@ -98,7 +98,7 @@ $ terrascan scan -i k8s
 Terrascan can be installed remotely to scan remote repositories or code resources using the `-r` and `-u` flags. Here's an example:
 
 ``` Bash
-$ terrascan scan -t aws -r git -u git@github.com:accurics/KaiMonkey.git//terraform/aws
+$ terrascan scan -t aws -r git -u git@github.com:tenable/KaiMonkey.git//terraform/aws
 ```
 
 > **Important**: The URLs for the remote repositories should follow similar naming conventions as the source argument for modules in Terraform. For more details, see [this article](https://www.terraform.io/docs/modules/sources.html).
@@ -178,7 +178,7 @@ e.g: For --iac-version v2, we need to have:
 
     KUSTOMIZE_V2=path/to/kustomize/v2/binary
 
-To install Kustomize one can use [this script](https://github.com/accurics/terrascan/tree/master/scripts/install_kustomize.sh)
+To install Kustomize one can use [this script](https://github.com/tenable/terrascan/tree/master/scripts/install_kustomize.sh)
 
 A specific directory to scan can be specified using the `-d` flag. The Kustomize IaC provider does not support scanning of individual files using the `-f` flag.
 

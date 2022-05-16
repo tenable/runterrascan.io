@@ -22,7 +22,7 @@ Using Terrascan's SARIF output, the action can include issues found during the s
 
 
 ``` YAML
- 
+
 on: [push]
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Run Terrascan
       id: terrascan
-      uses: accurics/terrascan-action@main
+      uses: tenable/terrascan-action@main
       with:
         iac_type: 'terraform'
         iac_version: 'v14'
@@ -53,13 +53,13 @@ jobs:
 ```
 
 
-A detailed explanation of the action's input variables is available in the [terrascan-action](https://github.com/accurics/terrascan-action/) repository.
+A detailed explanation of the action's input variables is available in the [terrascan-action](https://github.com/tenable/terrascan-action/) repository.
 
 ## GitLab CI
 
 [GitLab CI](https://docs.gitlab.com/ee/ci/README.html) can use [Docker images](https://docs.gitlab.com/ee/ci/docker/using_docker_images.html) as part of a pipeline. We can take advantage of this functionality and use Terrascan's docker image as part of your [pipeline](https://docs.gitlab.com/ee/ci/pipelines/) to scan infrastructure as code.
 
-To do this you can update your .gitlab-ci.yml file to use the "accurics/terrascan:latest" image with the ["bin/sh", "-c"] entrypoint. Terrascan can be found on "/go/bin" in the image and you can use any [Terrascan command line options](http://ubusvr:8000/getting-started/usage/#terrascan-commands) according to your needs. Here's an example .gitlab-ci.yml file:
+To do this you can update your .gitlab-ci.yml file to use the "tenable/terrascan:latest" image with the ["bin/sh", "-c"] entrypoint. Terrascan can be found on "/go/bin" in the image and you can use any [Terrascan command line options](http://ubusvr:8000/getting-started/usage/#terrascan-commands) according to your needs. Here's an example .gitlab-ci.yml file:
 
 ``` YAML
 stages:
@@ -67,7 +67,7 @@ stages:
 
 terrascan:
   image:
-    name: accurics/terrascan:latest
+    name: tenable/terrascan:latest
     entrypoint: ["/bin/sh", "-c"]
   stage: scan
   script:
@@ -194,7 +194,7 @@ The `Dockerfile` is, of course, used to build the container.  In this case, we s
 
 ``` SH
 # Dockerfile
-  FROM accurics/terrascan:929e377
+  FROM tenable/terrascan:929e377
 
   ENTRYPOINT []
 

@@ -12,7 +12,7 @@ For steps to install locally, or run Terrascan from docker, see [this section](.
 Terrascan is a Go binary that you can build locally. This is useful if you want to be on the latest version, or when modding Terrascan.
 
 ``` Bash
-$ git clone git@github.com:accurics/terrascan.git
+$ git clone git@github.com:tenable/terrascan.git
 $ cd terrascan
 $ make build
 $ ./bin/terrascan

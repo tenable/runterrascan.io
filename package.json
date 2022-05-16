@@ -7,14 +7,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/accurics/terrascan"
+    "url": "git+https://github.com/tenable/terrascan"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://https://github.com/accurics/terrascan/issues"
+    "url": "https://https://github.com/tenable/terrascan/issues"
   },
-  "homepage": "https://github.com/accurics/terrascan#readme",
+  "homepage": "https://github.com/tenable/terrascan#readme",
   "devDependencies": {
     "autoprefixer": "^9.8.6",
     "postcss": "^8.2.13",
