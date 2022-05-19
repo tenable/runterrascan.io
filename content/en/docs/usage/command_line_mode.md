@@ -104,7 +104,7 @@ $ terrascan scan -t aws -r git -u git@github.com:tenable/KaiMonkey.git//terrafor
 > **Important**: The URLs for the remote repositories should follow similar naming conventions as the source argument for modules in Terraform. For more details, see [this article](https://www.terraform.io/docs/modules/sources.html).
 
 #### Scanning private Terraform module repositories
-When scanning Terraform code, Terrascan checks for the availability of the file `~/.terraformrc`. This file contains credential information to authenticate a private terraform module registry. If this file is present, Terrascan will attempt to use the credentials when authenticating the private repository. For more details on the format of this file, please see Terraform's [config file documentation](https://www.terraform.io/docs/cli/config/config-file.html).
+When scanning Terraform code, Terrascan checks for the environment variable `TF_CLI_CONFIG_FILE`. If found uses the credential file provided in that environment variable to authenticate a private terraform module registry. If the env variable is not found then checks for the availability of the file `~/.terraformrc`. This file contains credential information to authenticate a private terraform module registry. If this file is present, Terrascan will attempt to use the credentials when authenticating the private repository. For more details on the format of this file, please see Terraform's [config file documentation](https://www.terraform.io/docs/cli/config/config-file.html).
 
 ## Configuring the output format for a scan
 
