@@ -3,7 +3,7 @@ title: "Argo CD"
 linkTitle: "Argo CD"
 weight: 20
 description: >
-     Terrascan can be configured as an Argo CD job during the application sync process using ArgoCD’s resource hook. 
+     Terrascan can be configured as an Argo CD job during the application sync process using ArgoCD’s resource hook.
 ---
 
 ## Terrascan can be integrated with Argo CD in two ways
@@ -46,7 +46,7 @@ spec:
        - name: ssh-key-secret
          secret:
            secretName: ssh-key-secret
-       #add a secret for git config file   
+       #add a secret for git config file
        - name: ssh-config
          secret:
            secretName: ssh-config-secret
@@ -148,7 +148,7 @@ fi
 For private repositories, the private following keys must be added as kubernetes secret:
  - `private key` and ssh `config` as Secret
  - `known_hosts`as ConfigMap
- 
+
 ```
  kubectl create secret generic ssh-key-secret \
    --from-file=ssh-privatekey= < path to your private key > \
@@ -159,7 +159,7 @@ For private repositories, the private following keys must be added as kubernetes
 
 ```
   kubectl  create configmap ssh-known-hosts --from-file=< path to your known hosts file >
-```   
+```
 
 ```
   kubectl  create configmap slack-notifications --from-file=< path to your notification script >
@@ -170,7 +170,7 @@ For private repositories, the private following keys must be added as kubernetes
 ```
  kubectl create secret generic ssh-config-secret \
    --from-file=< path to your ssh config file >
-```   
+```
 
 ##### Example ssh config file
 
@@ -229,7 +229,7 @@ template:
           value: yoursecretapikey
       volumeMounts:
         - mountPath: /data/certs
-          name: terrascan-certs-secret  
+          name: terrascan-certs-secret
           readOnly: true
         - mountPath: /data/config
           name: terrascan-config
@@ -256,7 +256,7 @@ template:
       - name: ssh-key-secret
         secret:
           secretName: ssh-key-secret
-      #add a secret for git config file   
+      #add a secret for git config file
       - name: ssh-config
         secret:
           secretName: ssh-config-secret
@@ -264,15 +264,15 @@ template:
       - name: ssh-known-hosts
         configMap:
           name: known-hosts-config
-      #add a configmap for the terrascan config.toml file    
+      #add a configmap for the terrascan config.toml file
       - name: terrascan-config
         configMap:
           name: terrascan-config
-      #add a secret for the tls certificates        
+      #add a secret for the tls certificates
       - name: terrascan-certs-secret
         secret:
-          secretName: terrascan-certs-secret    
-```            
+          secretName: terrascan-certs-secret
+```
 **Service example**
 
 ```yaml
@@ -332,7 +332,7 @@ Host github.com
 
 After making changes to the webhook deployment file, apply this yaml in your cluster.
 
-You can also run terrascan admission controller server outside cluster, for more information and instructions on configuring terrascan as an admission controller webhook, see https://docs.accurics.com/projects/accurics-terrascan/en/latest/integrations/admission-controller-webhooks-usage.
+You can also run terrascan admission controller server outside cluster, for more information and instructions on configuring terrascan as an admission controller webhook, see https://runterrascan.io/docs/integrations/k8s/.
 
 #### Step 2: Create a Dockerfile
 
@@ -427,7 +427,7 @@ metadata:
 generateName: terrascan-hook-
 namespace: <YOUR APP NAMESPACE>
 annotations:
-  argocd.argoproj.io/hook: PreSync            
+  argocd.argoproj.io/hook: PreSync
 spec:
 ttlSecondsAfterFinished: 3600
 template:
@@ -457,7 +457,7 @@ template:
         - name: CLOUD_PROVIDER
           value: <TYPE OF CLOUD PROVIDER> #If not provided default value is 'all'
         - name: REMOTE_TYPE
-          value: <TYPE OF REMOTE> #If not provided default value is 'git'         
+          value: <TYPE OF REMOTE> #If not provided default value is 'git'
       args:
       - sh
       - /home/terrascan/bin/terrascan-remote-scan.sh

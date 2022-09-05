@@ -27,7 +27,7 @@ $ terrascan
 Terrascan
 
 Detect compliance and security violations across Infrastructure as Code to mitigate risk before provisioning cloud native infrastructure.
-For more information, please visit https://docs.accurics.com
+For more information, please visit https://runterrascan.io/
 
 Usage:
   terrascan [command]
@@ -40,18 +40,20 @@ Available Commands:
   version     Shows the Terrascan version you are currently using.
 
 Flags:
-  -c, --config-path string   config file path
-  -h, --help                 help for terrascan
-  -l, --log-level string     log level (debug, info, warn, error, panic, fatal) (default "info")
-  -x, --log-type string      log output type (console, json) (default "console")
-  -o, --output string        output type (human, json, yaml, xml) (default "human")
+  -c, --config-path string      config file path
+  -h, --help                    help for terrascan
+  -l, --log-level string        log level (debug, info, warn, error, panic, fatal) (default "info")
+      --log-output-dir string   directory path to write the log and output files
+  -x, --log-type string         log output type (console, json) (default "console")
+  -o, --output string           output type (human, json, yaml, xml, junit-xml, sarif, github-sarif) (default "human")
+      --temp-dir string         temporary directory path to download remote repository,module and templates
 
 Use "terrascan [command] --help" for more information about a command.
 ```
 
 ## Initializing (optional)
 
-The initialization process downloads the latest policies from the [repository](https://github.com/accurics/terrascan) into `~/.terrascan`.
+The initialization process downloads the latest policies from the [repository](https://github.com/tenable/terrascan) into `~/.terrascan`.
 By default the policies are installed here: `~/.terrascan/pkg/policies/opa/rego` and are fetched while scanning an IaC.
 Use the following command to start the initialization process if you are updating the policies:
 
@@ -96,13 +98,13 @@ $ terrascan scan -i k8s
 Terrascan can be installed remotely to scan remote repositories or code resources using the `-r` and `-u` flags. Here's an example:
 
 ``` Bash
-$ terrascan scan -t aws -r git -u git@github.com:accurics/KaiMonkey.git//terraform/aws
+$ terrascan scan -t aws -r git -u git@github.com:tenable/KaiMonkey.git//terraform/aws
 ```
 
 > **Important**: The URLs for the remote repositories should follow similar naming conventions as the source argument for modules in Terraform. For more details, see [this article](https://www.terraform.io/docs/modules/sources.html).
 
 #### Scanning private Terraform module repositories
-When scanning Terraform code, Terrascan checks for the availability of the file `~/.terraformrc`. This file contains credential information to authenticate a private terraform module registry. If this file is present, Terrascan will attempt to use the credentials when authenticating the private repository. For more details on the format of this file, please see Terraform's [config file documentation](https://www.terraform.io/docs/cli/config/config-file.html).
+When scanning Terraform code, Terrascan checks for the environment variable `TF_CLI_CONFIG_FILE`. If found uses the credential file provided in that environment variable to authenticate a private terraform module registry. If the env variable is not found then checks for the availability of the file `~/.terraformrc`. This file contains credential information to authenticate a private terraform module registry. If this file is present, Terrascan will attempt to use the credentials when authenticating the private repository. For more details on the format of this file, please see Terraform's [config file documentation](https://www.terraform.io/docs/cli/config/config-file.html).
 
 ## Configuring the output format for a scan
 
@@ -176,7 +178,7 @@ e.g: For --iac-version v2, we need to have:
 
     KUSTOMIZE_V2=path/to/kustomize/v2/binary
 
-To install Kustomize one can use [this script](https://github.com/accurics/terrascan/tree/master/scripts/install_kustomize.sh)
+To install Kustomize one can use [this script](https://github.com/tenable/terrascan/tree/master/scripts/install_kustomize.sh)
 
 A specific directory to scan can be specified using the `-d` flag. The Kustomize IaC provider does not support scanning of individual files using the `-f` flag.
 
@@ -327,7 +329,7 @@ $  terrascan scan -i terraform -t aws -f elb.tf --config-only -o json
 | -d | Use this to scan a specific directory. Use "." for current directory | AWS, GCP, Azure, and GitHub|
 | -f | Use this command to scan a specific file | <tbd any formats/limitations for example file size> |
 | -i type  | Use this to change the IaC provider | arm, cft, docker, helm, k8s, kustomize, **terraform**|
-| --iac-version version | Use this in conjunction with `- i type` to specify the version of IaC provider | Supported versions of each IaC are: `arm: v1, cft: v1, docker: v1, helm: v3, k8s: v1, kustomize: v3, terraform: v12, v13, v14, v15`|
+| --iac-version version | Use this in conjunction with `- i type` to specify the version of IaC provider | Supported versions of each IaC are: `arm: v1, cft: v1, docker: v1, helm: v3, k8s: v1, kustomize: v2, v3, v4, terraform: v12, v13, v14, v15`|
 | -p | Use this to specify directory path for policies | By default policies are installed here: <tbd specify a default path> |
 | -t  | Use this to specify individual cloud providers | **all**, aws, azure, gcp, github, k8s|
 | -r | Use this to specify directory path for remote backend | git, s3, gcs, http |
@@ -336,8 +338,8 @@ $  terrascan scan -i terraform -t aws -f elb.tf --config-only -o json
 | |skip-rules|Specify one or more rules to skip while scanning. Example: --skip-rules="ruleID1,ruleID2"|
 | |use-colors |Configure the color for output (**auto**, t, f) |
 |--non-recursive |Use this for non recursive directories and modules scan | By default directory is scanned recursively, if this flag is used then only provided root directory will be scanned|
-|--notification-webhook-token string| Optional token used when sending authenticated requests to the notification webhook | This flag is optional when using the notification webhook|
-|--notification-webhook-url | A webhook URL where Terrascan will send JSON scan report and normalized IaC JSON | This overrides any notification webhook URLs configured in config TOML file specified with the `-c` flag|
+|--webhook-token string| Optional token used when sending authenticated requests to the notification webhook | This flag is optional when using the notification webhook|
+|--webhook-url | A webhook URL where Terrascan will send JSON scan report and normalized IaC JSON | This overrides any notification webhook URLs configured in config TOML file specified with the `-c` flag|
 |--use-terraform-cache |Use this to refer terraform remote modules from terraform init cache rather than downloading | By default remote module will be downloaded in temporary directory. If this flag is set then modules will be refered from terraform init cache if module is not present in terraform init cache it will be downloaded. Directory will be scanned non recurively if this flag is used.(applicable only with terraform IaC provider)|
 | --find-vuln | find vulnerabilities | Use this to fetch vulnerabilities identified on the registry for docker images present in IaC the files scanned |
 | --repo-url | repository url | This flag can be used to include the repository URL as part of scan results and notifications |
@@ -348,8 +350,10 @@ $  terrascan scan -i terraform -t aws -f elb.tf --config-only -o json
 | ----------- | ----------- |------------|
 | -c | Use this to specify config file settings | Format supported is `*.TOML` |
 | -l | Use this to specify what log settings | debug, **info**, warn, error, panic, fatal  |
+| --log-output-dir | Use this to specify the directory path for writing the scan output to files along with console output. Using this flag will generate `two` files in the directory path provided, `terrascan.log` and `scan-result.<ext>`. The scan-result file extension will be in sync with `-o` flag (e.g. `-o json` will create scan-result.json). In case the directory could not be resolved, the scan logs and results will be printed on console only. |
 | -x | Use this to specify the log file format | **console**, json |
 | -o | Use this to specify the scan output type | **human**, json, yaml, xml, junit-xml, sarif, github-sarif |
+| --temp-dir | Use this to specify temporary directory path to download remote repository,module and templates |
 
 
 
@@ -375,8 +379,8 @@ Flags:
   -i, --iac-type string                     iac type (arm, cft, docker, helm, k8s, kustomize, terraform, tfplan)
       --iac-version string                  iac version (arm: v1, cft: v1, docker: v1, helm: v3, k8s: v1, kustomize: v2, v3, v4, terraform: v12, v13, v14, v15, tfplan: v1)
       --non-recursive                       do not scan directories and modules recursively
-      --notification-webhook-token string   the auth token to call the notification webhook URL
-      --notification-webhook-url string     the URL where terrascan will send the scan report and normalized config json
+      --webhook-token string   the auth token to call the notification webhook URL
+      --webhook-url string     the URL where terrascan will send the scan report and normalized config json
   -p, --policy-path stringArray             policy path directory
   -t, --policy-type strings                 policy type (all, aws, azure, docker, gcp, github, k8s) (default [all])
   -r, --remote-type string                  type of remote backend (git, s3, gcs, http, terraform-registry)
@@ -392,8 +396,10 @@ Flags:
   -v, --verbose                             will show violations with details (applicable for default output)
 
 Global Flags:
-  -c, --config-path string   config file path
-  -l, --log-level string     log level (debug, info, warn, error, panic, fatal) (default "info")
-  -x, --log-type string      log output type (console, json) (default "console")
-  -o, --output string        output type (human, json, yaml, xml, junit-xml, sarif, github-sarif) (default "human")
+  -c, --config-path string      config file path
+  -l, --log-level string        log level (debug, info, warn, error, panic, fatal) (default "info")
+      --log-output-dir string   directory path to write the log and output files
+  -x, --log-type string         log output type (console, json) (default "console")
+  -o, --output string           output type (human, json, yaml, xml, junit-xml, sarif, github-sarif) (default "human")
+      --temp-dir string         temporary directory path to download remote repository,module and templates
 ```

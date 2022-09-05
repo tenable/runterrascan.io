@@ -5,7 +5,7 @@
 # serve it on http://localhost:1313/.
 #
 # Usage:
-# $ git clone https://github.com/accurics/runterrascan.io
+# $ git clone https://github.com/tenable/runterrascan.io
 # $ ./localdev.sh
 # <Open http://localhost:1313/ in browser>
 # <changes to working directory will hot reload in the dev server>

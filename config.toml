@@ -1,5 +1,5 @@
 baseURL = "https://runterrascan.io"
-title = "Terrascan"
+title = "Discover Terrascan: A Leading Open Source Cloud IaC Security Testing Tool"
 
 enableRobotsTXT = true
 
@@ -78,8 +78,8 @@ section = ["HTML", "print"]
 home = ["HTML", "RSS", "JSON"]
 
 [params]
-copyright = "Accurics"
-privacy_policy = "https://www.accurics.com/privacy/"
+copyright = "Tenable"
+privacy_policy = "https://www.tenable.com/privacy-policy"
 
 # First one is picked as the Twitter card image if not set on page.
 # images = ["images/project-illustration.png"]
@@ -103,9 +103,9 @@ version = "0.0"
 url_latest_version = "https://runterrascan.io"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/accurics/runterrascan.io"
+github_repo = "https://github.com/tenable/runterrascan.io"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/accurics/terrascan"
+github_project_repo = "https://github.com/tenable/terrascan"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
@@ -175,7 +175,7 @@ rss_sections = ["blog"]
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
 	name = "GitHub"
-	url = "https://github.com/accurics/terrascan"
+	url = "https://github.com/tenable/terrascan"
 	icon = "fab fa-github"
         desc = "Development takes place here!"
 [[params.links.developer]]
@@ -188,11 +188,11 @@ rss_sections = ["blog"]
 [[menu.main]]
     name = "GitHub"
     weight = 50
-    url = "https://github.com/accurics/terrascan"
+    url = "https://github.com/tenable/terrascan"
     pre = "<i class='fab fa-github'></i>"
 
 [[menu.main]]
     name = "Discord"
     weight = 60
-    url = "https://discord.gg/accurics-community"
+    url = "https://discord.gg/59vwVuGyGr"
     pre = "<i class='fab fa-discord'></i>"

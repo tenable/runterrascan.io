@@ -9,7 +9,7 @@ description: >
 
 ## Overview
 Terrascan can be integrated with K8s [admissions webhooks](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/).
-Admission controllers help you control resources created on a kubernetes cluster. By using Terrascan as an admission controller, resources violating security policies can be prevented from getting created in a Kubernetes cluster. For more details and instructions, [click here to see our blog](https://www.accurics.com/blog/terrascan-blog/kubernetes-security-terrascan-validating-admission-controller/).
+Admission controllers help you control resources created on a kubernetes cluster. By using Terrascan as an admission controller, resources violating security policies can be prevented from getting created in a Kubernetes cluster.
 
 > **Note on SSL certificates**: You can use valid SSL certificates or create self signed certificates and have your Kubernetes cluster trust it.
 
@@ -28,7 +28,7 @@ Create an instance of Terrascan. To scan K8s configurations, your Terrascan inst
 
 1. Make sure Terrascan is accessible via HTTPS. Ensure your cloud firewall is configured to allow this.
 2. Have a valid SSL certificate for the served domain name using one of the suggested methods below:
-    - Use a subdomain of your choice (e.g dev-terrascan-k8s.accurics.com) and create a valid certificate for this subdomain through your SSL certificate provider. You can use [Let's Encrypt](https://letsencrypt.org/) which is a free, simple to use certificate authority.
+    - Use a subdomain of your choice (e.g dev-terrascan-k8s.tenable.com) and create a valid certificate for this subdomain through your SSL certificate provider. You can use [Let's Encrypt](https://letsencrypt.org/) which is a free, simple to use certificate authority.
     - Use a reverse-proxy to serve SSL requests; for example, use Cloudflare Flexible to get a certificate by a trusted-CA to your [self-signed certificate](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs).
     - Generate a self-signed certificate and configure your K8s cluster to trust it. To add a trusted CA to ca-pemstore, as demonstrated in [paraspatidar's blog post](https://medium.com/@paraspatidar/add-ssl-tls-certificate-or-pem-file-to-kubernetes-pod-s-trusted-root-ca-store-7bed5cd683d).
 3. Use the Terrascan docker as demonstrated in this document, or run it from the sources.
@@ -78,7 +78,7 @@ You can specify the following configurations:
 Run Terrascan docker image in your server using the following command:
 
  ``` Bash
-  sudo docker run -p 443:9443 -v <DATA_PATH>:/data -u root -e K8S_WEBHOOK_API_KEY=<API_KEY> accurics/terrascan server --cert-path /data/cert.pem --key-path /data/key.pem -c /data/config.toml
+  sudo docker run -p 443:9443 -v <DATA_PATH>:/data -u root -e K8S_WEBHOOK_API_KEY=<API_KEY> tenable/terrascan server --cert-path /data/cert.pem --key-path /data/key.pem -c /data/config.toml
  ```
 Where,
 

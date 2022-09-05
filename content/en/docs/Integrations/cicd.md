@@ -22,7 +22,7 @@ Using Terrascan's SARIF output, the action can include issues found during the s
 
 
 ``` YAML
- 
+
 on: [push]
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Run Terrascan
       id: terrascan
-      uses: accurics/terrascan-action@main
+      uses: tenable/terrascan-action@main
       with:
         iac_type: 'terraform'
         iac_version: 'v14'
@@ -53,7 +53,7 @@ jobs:
 ```
 
 
-A detailed explanation of the action's input variables is available in the [terrascan-action](https://github.com/accurics/terrascan-action/) repository.
+A detailed explanation of the action's input variables is available in the [terrascan-action](https://github.com/tenable/terrascan-action/) repository.
 
 ## GitLab CI
 
@@ -67,7 +67,7 @@ stages:
 
 terrascan:
   image:
-    name: accurics/terrascan:latest
+    name: tenable/terrascan:latest
     entrypoint: ["/bin/sh", "-c"]
   stage: scan
   script:
@@ -81,7 +81,7 @@ terrascan:
 Terrascan can be configured as an Argo CD job during the application sync process using [resource hooks](https://argoproj.github.io/argo-cd/user-guide/resource_hooks). The PreSync resource hook is the best way to evaluate the kubernetes deployment configuration and report any violations.
 
 
-![picture](/img/terrascan-argo-cd-pipeline.png)
+![picture](/images/terrascan-argo-cd-pipeline.png)
 
 Adding the Terrascan job consists of two steps:
 
@@ -139,7 +139,7 @@ For non-public repositories, the private key needs to be added as a kubernetes s
 
 Configuring the job to delete only after the specified time see `ttlSecondsAfterFinished` will allow users to check for violations in the User Interface, the alternative is through **notifications**.
 
-![picture](../img/terrascan-argo-cd-resource-hook-logs.png)
+![picture](/images/terrascan-argo-cd-resource-hook-logs.png)
 
 ### Step 2: Create Terrascan container
 
@@ -194,7 +194,7 @@ The `Dockerfile` is, of course, used to build the container.  In this case, we s
 
 ``` SH
 # Dockerfile
-  FROM accurics/terrascan:929e377
+  FROM tenable/terrascan:929e377
 
   ENTRYPOINT []
 
