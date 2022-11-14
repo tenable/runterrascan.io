@@ -14,8 +14,8 @@ resources:
 Given the mind-boggling rate of innovation and adoption of cloud native technologies, the [Terrascan](https://www.accurics.com/products/terrascan/) team at Tenable has resolved to help cloud native development teams identify and mitigate more vulnerabilities than ever.  Terrascan provides a great platform for this, since it is easy to integrate policy as code into development pipelines and the extensible architecture makes it easy to build flexible policies with the popular Open Policy Agent (OPA).
 
 With all the attention on Kubernetes security at the moment, we decided to start there.  We are focusing on a couple of common themes that underpin Kubernetes vulnerabilities.  Specifically:
-Establishing a sandbox for your containers.  It is important to establish constraints on the capabilities of your containers, so attackers cannot compromise your nodes or host systems.
-Resource management.  Configurations should specify limits for the resources that can be used by containers and pods, to prevent denial of service when demand spikes.
+* Establishing a sandbox for your containers.  It is important to establish constraints on the capabilities of your containers, so attackers cannot compromise your nodes or host systems.
+* Resource management.  Configurations should specify limits for the resources that can be used by containers and pods, to prevent denial of service when demand spikes.
 
 For simplicity, I generally refer to “pods” in the explanations below.  Many of these policies are relevant for numerous types of resources, such as pods, ReplicaSets, Deployments, etc.  Our policies actually protect all the relevant object types, even though I may only mention pods.  To fully understand which resources are protected by a particular policy, you can reference the source code or the documentation.
 
