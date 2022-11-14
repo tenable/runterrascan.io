@@ -22,12 +22,15 @@ For simplicity, I generally refer to “pods” in the explanations below.  Many
 ### Policy as Code Enforcing Resource Management
 
 Proactive resource management is a best practice for Kubernetes.  If you do not establish limits on the resources that your containers and pods can use, then you can end up in a situation where they require more resources than are available.  These limits also help the folks managing your production environment understand the scaling characteristics of your system, since they are probably not as familiar with it as you are.
+
 Note that these policies are relevant from a security perspective as well as an operational perspective.
+
 To avoid these types of problems, teams should establish a policy that Kubernetes configurations must specify resource limits.  They can leverage policy as code tools like Terrascan to scan configurations and flag any that do not comply with the codified policy.
 The first two policies pertain to CPU limits and requests.  In short, your pods should specify how much CPU they want, and also define a limit for how much CPU they may consume in the worst case.  This enables the scheduler to place the workload on an appropriate node with an eye to the worst case CPU consumption to avoid starving other tenants.
 CPU Limits Should be Set
 CPU Request Should be Set
 The following configuration includes the desired settings and is compliant with our policy.  A non-compliant configuration would lack one or both of the CPU limits and requests.
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -43,7 +46,7 @@ spec:
       # Applies to policy #2 (CPU request should be set)
       requests:
         cpu: "500m"
-
+```
 The third and fourth resource policies are similar to those above, except they apply to memory rather than CPU.  The rationale is the same.
 Memory Limits Should be Set
 Memory Requests Should be Set
