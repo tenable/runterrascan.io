@@ -48,8 +48,9 @@ spec:
         cpu: "500m"
 ```
 The third and fourth resource policies are similar to those above, except they apply to memory rather than CPU.  The rationale is the same.
-Memory Limits Should be Set
-Memory Requests Should be Set
+* Memory Limits Should be Set
+* Memory Requests Should be Set
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -65,35 +66,37 @@ spec:
      # Applies to policy #4 (Memory requests should be set)
      requests:
        memory: "256M"
-
-Avoid use of vulnerable volume types
+```
+* Avoid use of vulnerable volume types
 CVE-2020-8555 affects certain versions of Kubernetes, and allows an information leak when pods use certain types of volumes. This policy helps you avoid vulnerable configurations by identifying unsafe use of these volume types.
-Policy as Code Enforcing Container Sandboxes
+
+### Policy as Code Enforcing Container Sandboxes
 Linux, and by extension the container runtime, provides a variety of “capabilities” that processes can use, which establish finer-grained permissions than simply testing whether they are running as root.  Perhaps more important than the need to limit the resources that containers can use, is the need to limit the capabilities that containers will have at runtime–these capabilities will increase the container’s access to the host system and the container runtime daemon.  By limiting these capabilities, you can prevent the container workload from breaking out of the container to access other processes and resources on the host system.
+
 In the case of Kubernetes applications, breaking out the container may enable a workload to access the node upon which the workload runs, and in turn to access Kubernetes secrets which may allow access to other nodes and the control plane.
 Several of these policies pertain to the PodSecurityPolicy for a particular pod or node:
-Container Should Not Be Privileged
-Privileged containers can bypass restrictions in the Docker daemon, allowing them to access the host system like a privileged local process.  This is necessary for certain use cases, but should not normally be enabled for production workloads.
-This corresponds to the privileged field.
-Containers Should Not Run with AllowPrivilegeEscalation
+* Container Should Not Be Privileged
+Privileged containers can bypass restrictions in the Docker daemon, allowing them to access the host system like a privileged local process.  This is necessary for certain use cases, but should not normally be enabled for production workloads. This corresponds to the privileged field.
+* Containers Should Not Run with AllowPrivilegeEscalation
 This policy protects against applications that try to escalate their privilege entitlements at runtime, potentially gaining privileges that the container creator did not intend for them to have.
 This corresponds to the allowPrivilegeEscalation field.
+
 Containers generally run inside an isolated environment that prevents pods from accessing host-level information on the node such as process ids (PIDs), interprocess communication (IPC) mechanisms, the underlying host network, and so forth.  Moreover, processes running inside containers may be able to indirectly access resources on the host based on the user id (UID) under which they run.  For example, filesystem permissions are often based on UIDs.  As a result, it is important for developers to make efforts to enforce isolation within the container runtime so that workloads can’t access things which they should not be able to access.  The following rules enforce those constraints: 
-Containers Should Not Share Host IPC Namespace
+1. Containers Should Not Share Host IPC Namespace
 If a container is able to access the host’s IPC namespace, then it can discover and communicate with processes in other containers or on the host itself.
 This corresponds to the hostIPC field
-Containers Should Not Share Host Process ID Namespace
+2. Containers Should Not Share Host Process ID Namespace
 If a container is able to access the host’s PID namespace, then it can discover and potentially escalate privileges for any process on the host including itself.
 This corresponds to the hostPID field
-Containers Should Not Share the Host Network Namespace
+3. Containers Should Not Share the Host Network Namespace
 If a container is able to directly access the host network, then it can operate outside the virtual network established by Kubernetes–potentially accessing the control plane or internal services which should not be accessible.
 This corresponds to the hostNetwork field
-Containers Should Run as a High UID to Avoid Host Conflict
+4. Containers Should Run as a High UID to Avoid Host Conflict
 Containers ideally will run under a unique UID which is not present on the host system.  This ensures that the container will not be able to access resources on the host to which it is not entitled.  If a container runs under UID 0, for example (a common default), then it might be able to access privileged files like /etc/passwd if it gained access to the host’s filesystem.  If the container runs under a unique UID, then it would not be able to access host-based files even if it gained access to the filesystem.
 This corresponds to the runAsUser field
-Ensure that readOnlyRootFileSystem is set to true
+5. Ensure that readOnlyRootFileSystem is set to true
 Containers with writable root filesystems may be able to modify the cached image used by other pods based on the same image.  Thus, it is important to ensure that the readOnlyRootFilesystem field is true.
-Restrict Mounting Docker Socket in a Container
+6. Restrict Mounting Docker Socket in a Container
 If a container can access the Docker daemon socket, then they can control the container runtime.  This includes listing and controlling containers, changing capabilities, and even gaining control over the host.  This rule ensures that containers are configured to prevent access to the Docker socket from within the container.
 The isolation of each container is typically augmented by imposing restrictions on capabilities, security profiles, and access to kernel settings (sysctls).  The following Terrascan rules ensure that sensible restrictions are configured for containers, and that containers do not attempt to remove such restrictions:
 Do Not Use CAP_SYS_ADMIN Linux Capability
