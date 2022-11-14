@@ -19,7 +19,7 @@ With all the attention on Kubernetes security at the moment, we decided to start
 
 For simplicity, I generally refer to “pods” in the explanations below.  Many of these policies are relevant for numerous types of resources, such as pods, ReplicaSets, Deployments, etc.  Our policies actually protect all the relevant object types, even though I may only mention pods.  To fully understand which resources are protected by a particular policy, you can reference the source code or the documentation.
 
-Policy as Code Enforcing Resource Management
+### Policy as Code Enforcing Resource Management
 
 Proactive resource management is a best practice for Kubernetes.  If you do not establish limits on the resources that your containers and pods can use, then you can end up in a situation where they require more resources than are available.  These limits also help the folks managing your production environment understand the scaling characteristics of your system, since they are probably not as familiar with it as you are.
 Note that these policies are relevant from a security perspective as well as an operational perspective.
