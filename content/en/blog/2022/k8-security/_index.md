@@ -98,20 +98,21 @@ This corresponds to the runAsUser field
 Containers with writable root filesystems may be able to modify the cached image used by other pods based on the same image.  Thus, it is important to ensure that the readOnlyRootFilesystem field is true.
 6. Restrict Mounting Docker Socket in a Container
 If a container can access the Docker daemon socket, then they can control the container runtime.  This includes listing and controlling containers, changing capabilities, and even gaining control over the host.  This rule ensures that containers are configured to prevent access to the Docker socket from within the container.
+
 The isolation of each container is typically augmented by imposing restrictions on capabilities, security profiles, and access to kernel settings (sysctls).  The following Terrascan rules ensure that sensible restrictions are configured for containers, and that containers do not attempt to remove such restrictions:
-Do Not Use CAP_SYS_ADMIN Linux Capability
-The CAP_SYS_ADMIN capability essentially grants root privileges to the container and should be avoided for the same reasons as #6 and #7 above.
-This corresponds to enabling SYS_ADMIN in the allowedCapabilities field.
-Ensure that every pod has AppArmor profile set to runtime/default in annotations
+1. Do Not Use `CAP_SYS_ADMIN` Linux Capability
+The `CAP_SYS_ADMIN` capability essentially grants root privileges to the container and should be avoided for the same reasons as #6 and #7 above.
+This corresponds to enabling `SYS_ADMIN` in the `allowedCapabilities` field.
+1. Ensure that every pod has AppArmor profile set to runtime/default in annotations
 If you use AppArmor, then you should leverage the default, secure profiles for your workloads.  This rule ensures that you are using one of the secure defaults, rather than a profile which provides insufficient protection.
 This corresponds to AppArmor annotations added to the PodSecurityPolicy, as described in the documentation.
-Ensure that seccomp profile is set to runtime/default or docker/default
+1. Ensure that seccomp profile is set to runtime/default or docker/default
 An alternative to AppArmor is seccomp.  Similar to #16, users should use the secure default profiles rather than potentially insecure ones.
 This corresponds to the seccompProfile field or seccomp annotations added to the pod, depending on the version of Kubernetes in use.
-Ensure that forbidden sysctls are not included in pod spec
+1. Ensure that forbidden sysctls are not included in pod spec
 Some sysctl access is necessary for containers to operate, but sysctls are a very low-level and potentially invasive capability.  This rule ensures that containers do not enable sysctls that will represent a risk to the broader host system.
 This corresponds to the forbiddenSysctls and allowedUnsafeSysctls fields.
-Minimize Admission of Containers with Capabilities Assigned
+1. Minimize Admission of Containers with Capabilities Assigned
 Explicitly adding capabilities to the allowedCapabilities field is inherently dangerous because it gives the container capabilities beyond the secure defaults.  If an attacker were able to gain control of the container, they could leverage these extra capabilities to potentially take over the node or access the control plane.
 Minimize Admission of Root Containers
 SecurityContext should specify runAsNonRoot to ensure containers do not run with the root UID of 0.  See #6-#12 above for more information about the dangers of containers as root.
