@@ -1,7 +1,7 @@
 ---
 date: 2021-05-19
-title: "Automating Terraform Security with pre-commit-terraform and Terrascan"
-linkTitle: "Automating Terraform Security"
+title: "Improving Kubernetes Security"
+linkTitle: "Improving Kubernetes Security"
 description: ""
 author: Cesar Rodriguez ([Developer Advocate](https://github.com/cesar-rodriguez))
 resources:
@@ -11,128 +11,101 @@ resources:
     byline: ""
 ---
 
-One of the best things about using Terraform to manage your systems is that best practices can be defined and applied to your templates in a manner similar to what is done with application code. This means that linting and testing the infrastructure as code (IaC) templates for quality, operational, and security issues can be accomplished easily, using some of the same workflows as application code. The most common place to enforce coding best practices is in continuous integration (CI) pipelines. 
+Given the mind-boggling rate of innovation and adoption of cloud native technologies, the Terrascan team at Tenable has resolved to help cloud native development teams identify and mitigate more vulnerabilities than ever.  Terrascan provides a great platform for this, since it is easy to integrate policy as code into development pipelines and the extensible architecture makes it easy to build flexible policies with the popular Open Policy Agent (OPA).
+With all the attention on Kubernetes security at the moment, we decided to start there.  We are focusing on a couple of common themes that underpin Kubernetes vulnerabilities.  Specifically:
+Establishing a sandbox for your containers.  It is important to establish constraints on the capabilities of your containers, so attackers cannot compromise your nodes or host systems.
+Resource management.  Configurations should specify limits for the resources that can be used by containers and pods, to prevent denial of service when demand spikes.
+For simplicity, I generally refer to “pods” in the explanations below.  Many of these policies are relevant for numerous types of resources, such as pods, ReplicaSets, Deployments, etc.  Our policies actually protect all the relevant object types, even though I may only mention pods.  To fully understand which resources are protected by a particular policy, you can reference the source code or the documentation.
+Policy as Code Enforcing Resource Management
+Proactive resource management is a best practice for Kubernetes.  If you do not establish limits on the resources that your containers and pods can use, then you can end up in a situation where they require more resources than are available.  These limits also help the folks managing your production environment understand the scaling characteristics of your system, since they are probably not as familiar with it as you are.
+Note that these policies are relevant from a security perspective as well as an operational perspective.
+To avoid these types of problems, teams should establish a policy that Kubernetes configurations must specify resource limits.  They can leverage policy as code tools like Terrascan to scan configurations and flag any that do not comply with the codified policy.
+The first two policies pertain to CPU limits and requests.  In short, your pods should specify how much CPU they want, and also define a limit for how much CPU they may consume in the worst case.  This enables the scheduler to place the workload on an appropriate node with an eye to the worst case CPU consumption to avoid starving other tenants.
+CPU Limits Should be Set
+CPU Request Should be Set
+The following configuration includes the desired settings and is compliant with our policy.  A non-compliant configuration would lack one or both of the CPU limits and requests.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cpu-request-limit-example
+spec:
+  containers:
+  - name: cpu-request-limit-container
+    image: images.example/app-image
+    resources:
+      # Applies to policy #1 (CPU limit should be set)
+      limits:
+        cpu: "1500m"
+      # Applies to policy #2 (CPU request should be set)
+      requests:
+        cpu: "500m"
 
-You can configure your CI pipelines to help enforce compliance with your coding policies by automatically executing validation scripts and tools and failing the CI job whenever there’s a violation. These can be configured to prevent any merges to your main branch if there’s a violation that could be considered a blocker to your system. 
+The third and fourth resource policies are similar to those above, except they apply to memory rather than CPU.  The rationale is the same.
+Memory Limits Should be Set
+Memory Requests Should be Set
+apiVersion: v1
+kind: Pod
+metadata:
+  name: memory-request-limit-example
+spec:
+  containers:
+  - name: memory-request-limit-container
+    image: images.example/app-image
+    resources:
+     # Applies to policy #3 (Memory limit should be set)
+     limits:
+       memory: "512M"
+     # Applies to policy #4 (Memory requests should be set)
+     requests:
+       memory: "256M"
 
-One of the drawbacks to relying on pipelines for enforcement is that they are bottlenecks in the development process.  Every code change goes through them, and one bad commit can break the build for everybody.  This can be extremely disruptive when teams are iterating quickly. One way to avoid this problem is to use a pre-commit hook to enforce standards locally on a developer’s system before pushing code to the repository. By adding a pre-commit configuration to your repository, you can help those contributing to your repository test locally to ensure their commit will not break the build once it is pushed and CI pipelines are completed. 
+Avoid use of vulnerable volume types
+CVE-2020-8555 affects certain versions of Kubernetes, and allows an information leak when pods use certain types of volumes. This policy helps you avoid vulnerable configurations by identifying unsafe use of these volume types.
+Policy as Code Enforcing Container Sandboxes
+Linux, and by extension the container runtime, provides a variety of “capabilities” that processes can use, which establish finer-grained permissions than simply testing whether they are running as root.  Perhaps more important than the need to limit the resources that containers can use, is the need to limit the capabilities that containers will have at runtime–these capabilities will increase the container’s access to the host system and the container runtime daemon.  By limiting these capabilities, you can prevent the container workload from breaking out of the container to access other processes and resources on the host system.
+In the case of Kubernetes applications, breaking out the container may enable a workload to access the node upon which the workload runs, and in turn to access Kubernetes secrets which may allow access to other nodes and the control plane.
+Several of these policies pertain to the PodSecurityPolicy for a particular pod or node:
+Container Should Not Be Privileged
+Privileged containers can bypass restrictions in the Docker daemon, allowing them to access the host system like a privileged local process.  This is necessary for certain use cases, but should not normally be enabled for production workloads.
+This corresponds to the privileged field.
+Containers Should Not Run with AllowPrivilegeEscalation
+This policy protects against applications that try to escalate their privilege entitlements at runtime, potentially gaining privileges that the container creator did not intend for them to have.
+This corresponds to the allowPrivilegeEscalation field.
+Containers generally run inside an isolated environment that prevents pods from accessing host-level information on the node such as process ids (PIDs), interprocess communication (IPC) mechanisms, the underlying host network, and so forth.  Moreover, processes running inside containers may be able to indirectly access resources on the host based on the user id (UID) under which they run.  For example, filesystem permissions are often based on UIDs.  As a result, it is important for developers to make efforts to enforce isolation within the container runtime so that workloads can’t access things which they should not be able to access.  The following rules enforce those constraints: 
+Containers Should Not Share Host IPC Namespace
+If a container is able to access the host’s IPC namespace, then it can discover and communicate with processes in other containers or on the host itself.
+This corresponds to the hostIPC field
+Containers Should Not Share Host Process ID Namespace
+If a container is able to access the host’s PID namespace, then it can discover and potentially escalate privileges for any process on the host including itself.
+This corresponds to the hostPID field
+Containers Should Not Share the Host Network Namespace
+If a container is able to directly access the host network, then it can operate outside the virtual network established by Kubernetes–potentially accessing the control plane or internal services which should not be accessible.
+This corresponds to the hostNetwork field
+Containers Should Run as a High UID to Avoid Host Conflict
+Containers ideally will run under a unique UID which is not present on the host system.  This ensures that the container will not be able to access resources on the host to which it is not entitled.  If a container runs under UID 0, for example (a common default), then it might be able to access privileged files like /etc/passwd if it gained access to the host’s filesystem.  If the container runs under a unique UID, then it would not be able to access host-based files even if it gained access to the filesystem.
+This corresponds to the runAsUser field
+Ensure that readOnlyRootFileSystem is set to true
+Containers with writable root filesystems may be able to modify the cached image used by other pods based on the same image.  Thus, it is important to ensure that the readOnlyRootFilesystem field is true.
+Restrict Mounting Docker Socket in a Container
+If a container can access the Docker daemon socket, then they can control the container runtime.  This includes listing and controlling containers, changing capabilities, and even gaining control over the host.  This rule ensures that containers are configured to prevent access to the Docker socket from within the container.
+The isolation of each container is typically augmented by imposing restrictions on capabilities, security profiles, and access to kernel settings (sysctls).  The following Terrascan rules ensure that sensible restrictions are configured for containers, and that containers do not attempt to remove such restrictions:
+Do Not Use CAP_SYS_ADMIN Linux Capability
+The CAP_SYS_ADMIN capability essentially grants root privileges to the container and should be avoided for the same reasons as #6 and #7 above.
+This corresponds to enabling SYS_ADMIN in the allowedCapabilities field.
+Ensure that every pod has AppArmor profile set to runtime/default in annotations
+If you use AppArmor, then you should leverage the default, secure profiles for your workloads.  This rule ensures that you are using one of the secure defaults, rather than a profile which provides insufficient protection.
+This corresponds to AppArmor annotations added to the PodSecurityPolicy, as described in the documentation.
+Ensure that seccomp profile is set to runtime/default or docker/default
+An alternative to AppArmor is seccomp.  Similar to #16, users should use the secure default profiles rather than potentially insecure ones.
+This corresponds to the seccompProfile field or seccomp annotations added to the pod, depending on the version of Kubernetes in use.
+Ensure that forbidden sysctls are not included in pod spec
+Some sysctl access is necessary for containers to operate, but sysctls are a very low-level and potentially invasive capability.  This rule ensures that containers do not enable sysctls that will represent a risk to the broader host system.
+This corresponds to the forbiddenSysctls and allowedUnsafeSysctls fields.
+Minimize Admission of Containers with Capabilities Assigned
+Explicitly adding capabilities to the allowedCapabilities field is inherently dangerous because it gives the container capabilities beyond the secure defaults.  If an attacker were able to gain control of the container, they could leverage these extra capabilities to potentially take over the node or access the control plane.
+Minimize Admission of Root Containers
+SecurityContext should specify runAsNonRoot to ensure containers do not run with the root UID of 0.  See #6-#12 above for more information about the dangers of containers as root.
+These new policies will enable development teams to better enforce reasonable security policies at build time, and shine a light on configurations that introduce unnecessary risk of vulnerability in the system.  By leveraging policy as code in automated pipelines, teams can effectively identify and remediate risk during development and before insecure systems are deployed.
+.
+Note: this series focuses on policies available on the main branch of Terrascan which may precede a release that includes the new policies.  If you want to ensure you are using the latest policies, you can delete your local policy configuration (typically in $HOME/.terrascan) and re-run terrascan init.  The policies discussed in this document were committed to the repository on 2021-01-13 and will be included in the release after 1.2.
 
-For Terraform, one of the best projects out there to configure your repository’s pre-commit scripts is [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform). The pre-commit-terraform project includes multiple git hooks specifically for Terraform that can help with linting, documentation, operational, and security compliance. As part of its security toolbox pre-commit-terraform includes [Terrascan](https://runterrascan.io), the static code analyzer for IaC maintained by Accurics.
-
-## Terraform security with pre-commit-terraform
-
-Let’s take a look at how Terrascan can be leveraged to find Terraform security issues using pre-commit-terraform in an example. 
-
-The first step is to install pre-commit. Alternate ways of installing are available here.
-`~ ➜  pip install pre-commit`
-
-Once pre-commit is installed we can create the repository that will contain our Terraform templates.
-```
-~ ➜  mkdir pre-commit-tf-example
-~ ➜  git init pre-commit-tf-example
-~ ➜  cd pre-commit-tf-example
-```
-
-We’ll add a .pre-commit-config.yaml file in the root of our repository configured to use the terrascan git hook within the pre-commit-terraform repository. We’ll reference release v1.50.0 which is the latest release as of this writing.
-
-```
-pre-commit-tf-example git:(main) ✗ ➜  cat .pre-commit-config.yaml
-repos:
--   repo: https://github.com/antonbabenko/pre-commit-terraform
-	rev: v1.50.0
-	hooks:
-	-   id: terrascan
-pre-commit-tf-example git:(main) ✗ ➜
-```
-
-
-Now, we’ll run the pre-commit install, which will configure pre-commit for this particular repository using the information obtained from the .pre-commit-config.yaml file.
-```
-pre-commit-tf-example git:(master) ✗ ➜  pre-commit install
-pre-commit installed at .git/hooks/pre-commit
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-Let’s add a Terraform template with a known violation. In this case we’re going to add an AWS S3 object resource that’s missing the encryption at rest configuration.
-```
-pre-commit-tf-example git:(master) ✗ ➜  cat main.tf
-variable "bucket" {}
-
-resource "aws_s3_bucket_object" "html" {
-  bucket   	= var.bucket
-  key      	= "index.html"
-  source   	= "index.html"
-  acl      	= "public-read"
-  content_type  = "text/html"
-  etag     	= filemd5("index.html")
-}
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-Once we try to commit the Terraform template, pre-commit will execute Terrascan. Since we have not set encryption for this object, Terrascan will fail and provide feedback on what it found.
-```
-pre-commit-tf-example git:(master) ✗ ➜  git add . && git commit -m 'add terraform'
-[INFO] Initializing environment for https://github.com/antonbabenko/pre-commit-terraform.
-terrascan................................................................Failed
-- hook id: terrascan
-- exit code: 3
-
-Violation Details -
-    
-    Description	:    Ensure S3 object is Encrypted
-    File       	:    main.tf
-    Line       	:    3
-    Severity   	:    MEDIUM
-    -----------------------------------------------------------------------
-    
-
-Scan Summary -
-
-    File/Folder     	  :    /Users/therasec/pre-commit-tf-example
-    IaC Type        	  :    terraform
-    Scanned At      	  :    2021-05-10 03:32:22.117445 +0000 UTC
-    Policies Validated  :    607
-    Violated Policies   :    1
-    Low             	  :    0
-    Medium          	  :    1
-    High             	  :    0
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-Let's fix the issue by configuring server side encryption for the object and try to commit again.
-```
-pre-commit-tf-example git:(master) ✗ ➜  cat main.tf
-
-variable "bucket" {}
-
-resource "aws_kms_alias" "a" {
-  name = "alias/my-key-alias"
-}
-
-resource "aws_s3_bucket_object" "html" {
-  bucket             	= var.bucket
-  key                	= "index.html"
-  source             	= "index.html"
-  acl                	= "public-read"
-  content_type       	= "text/html"
-  etag               	= filemd5("index.html")
-  server_side_encryption = "AES256"
-  kms_key_id         	= data.aws_kms_alias.a.target_key_id
-}
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-Since we added the server_side_encryption and kms_key_id parameters, the issue should be solved and we should be able to perform `git commit`. 
-```
-pre-commit-tf-example git:(master) ✗ ➜  git add .
-pre-commit-tf-example git:(master) ✗ ➜  git commit -m 'add terraform'
-terrascan................................................................Passed
-[master (root-commit) 41138a6] adds terraform
- 2 files changed, 22 insertions(+)
- create mode 100644 .pre-commit-config.yaml
- create mode 100644 main.tf
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-
-By using a pre-commit hook we’re able to get quick feedback into security issues affecting the code we’re trying to commit. This allows us to solve issues quickly and prevent any misconfigurations from being merged into our baseline code. Terrascan can be leveraged as a pre-commit hook and as part of your CI/CD pipelines to find Terraform security weaknesses and is included as part of the pre-commit-terraform project.
