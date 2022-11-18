@@ -309,7 +309,6 @@ description: >
 - Fix notification webhook flow [\#1051](https://github.com/accurics/terrascan/pull/1051) ([nasir-rabbani](https://github.com/nasir-rabbani))
 - update container image version in helm and kustomize sources [\#1050](https://github.com/accurics/terrascan/pull/1050) ([dev-gaur](https://github.com/dev-gaur))
 - Accept notification webhook configs as CLI args [\#1042](https://github.com/accurics/terrascan/pull/1042) ([nasir-rabbani](https://github.com/nasir-rabbani))
-
 ## [v1.11.0](https://github.com/accurics/terrascan/tree/v1.11.0) (2021-10-07)
 
 [Full Changelog](https://github.com/accurics/terrascan/compare/v1.10.0...v1.11.0)
@@ -390,6 +389,7 @@ description: >
 - Extract Docker images from Terraform templates [\#937](https://github.com/accurics/terrascan/pull/937) ([dev-gaur](https://github.com/dev-gaur))
 - Fixes supported Kustomize version \(should be v4\) [\#932](https://github.com/accurics/terrascan/pull/932) ([dev-gaur](https://github.com/dev-gaur))
 - Extract Docker images from k8s YAML files [\#905](https://github.com/accurics/terrascan/pull/905) ([dev-gaur](https://github.com/dev-gaur))
+
 
 ## [v1.9.0](https://github.com/accurics/terrascan/tree/v1.9.0) (2021-08-06)
 
@@ -520,6 +520,8 @@ description: >
 - Added "id" field support & policy validation tests [\#843](https://github.com/accurics/terrascan/pull/843) ([nasir-rabbani](https://github.com/nasir-rabbani))
 - Add Microsoft Azure ARM as an IaC Provider  [\#736](https://github.com/accurics/terrascan/pull/736) ([gauravgahlot](https://github.com/gauravgahlot))
 
+# Changelog
+
 ## [v1.7.0](https://github.com/accurics/terrascan/tree/v1.7.0) (2021-06-09)
 
 [Full Changelog](https://github.com/accurics/terrascan/compare/v1.6.0...v1.7.0)
@@ -624,6 +626,8 @@ description: >
 - Update mkdocs-redirects to 1.0.3 [\#710](https://github.com/accurics/terrascan/pull/710) ([pyup-bot](https://github.com/pyup-bot))
 - Initial addition of terrascan helm chart [\#688](https://github.com/accurics/terrascan/pull/688) ([jlk](https://github.com/jlk))
 
+# Changelog
+
 ## [v1.6.0](https://github.com/accurics/terrascan/tree/v1.6.0) (2021-05-10)
 
 [Full Changelog](https://github.com/accurics/terrascan/compare/v1.5.1...v1.6.0)
@@ -668,6 +672,8 @@ description: >
 - add terrascan atlantis container files, scripts and doc. [\#684](https://github.com/accurics/terrascan/pull/684) ([dev-gaur](https://github.com/dev-gaur))
 - adds support to scan directory with all iac providers in cli mode [\#674](https://github.com/accurics/terrascan/pull/674) ([patilpankaj212](https://github.com/patilpankaj212))
 - adds support to scan sub folders for terraform iac provider [\#640](https://github.com/accurics/terrascan/pull/640) ([patilpankaj212](https://github.com/patilpankaj212))
+
+# Changelog
 
 ## [v1.5.0](https://github.com/accurics/terrascan/tree/v1.5.0) (2021-04-23)
 
