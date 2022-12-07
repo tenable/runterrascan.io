@@ -1,9 +1,9 @@
 ---
-date: 2021-05-19
-title: "Automating Terraform Security with pre-commit-terraform and Terrascan"
-linkTitle: "Automating Terraform Security"
+date: 2022-12-07
+title: "GitOps Security: Same tool, same policies, one Terrascan"
+linkTitle: "Securely scanning Argos pipelines with policy as code"
 description: ""
-author: Cesar Rodriguez ([Developer Advocate](https://github.com/cesar-rodriguez))
+author: Upkar Lidder ([Senior Product Manager](https://github.com/upkarlidder))
 resources:
 - src: "**.{png,jpg}"
   title: "Image #:counter"
@@ -11,128 +11,26 @@ resources:
     byline: ""
 ---
 
-One of the best things about using Terraform to manage your systems is that best practices can be defined and applied to your templates in a manner similar to what is done with application code. This means that linting and testing the infrastructure as code (IaC) templates for quality, operational, and security issues can be accomplished easily, using some of the same workflows as application code. The most common place to enforce coding best practices is in continuous integration (CI) pipelines. 
+Among their many advantages, GitOps pipelines enable teams to run automated security tests using codified policies. Since your Git repository reflects your infrastructure configurations, scanning your Infrastructure as Code (IaC) repository is a straightforward way to find and fix security vulnerabilities as part of local development cycles. 
 
-You can configure your CI pipelines to help enforce compliance with your coding policies by automatically executing validation scripts and tools and failing the CI job whenever there’s a violation. These can be configured to prevent any merges to your main branch if there’s a violation that could be considered a blocker to your system. 
+Terrascan, a leading open-source static code analyzer for cloud technologies like Terraform, Helm, Docker, Kubernetes (K8) and others, has had the ability to scan and test IaC repositories for some time. It’s ideal for teams who are -- or want to -- add security checks to the code they use to provision cloud and on-prem systems. This practice is what’s commonly known as Policy as Code.
 
-One of the drawbacks to relying on pipelines for enforcement is that they are bottlenecks in the development process.  Every code change goes through them, and one bad commit can break the build for everybody.  This can be extremely disruptive when teams are iterating quickly. One way to avoid this problem is to use a pre-commit hook to enforce standards locally on a developer’s system before pushing code to the repository. By adding a pre-commit configuration to your repository, you can help those contributing to your repository test locally to ensure their commit will not break the build once it is pushed and CI pipelines are completed. 
+One of the key advantages of Terrascan is the ability to scan code throughout its lifecycle, on developer workstations, in git repositories, Kubernetes admissions controllers and in CI/CD pipelines. This empowers DevOps teams to integrate Terrascan into their workflows and apply the same policies used to enforce policies in production environments. Using the same tool, with the same policies, ensures security and consistency across the GitOps pipeline and prevents code-to-cloud drift.
 
-For Terraform, one of the best projects out there to configure your repository’s pre-commit scripts is [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform). The pre-commit-terraform project includes multiple git hooks specifically for Terraform that can help with linting, documentation, operational, and security compliance. As part of its security toolbox pre-commit-terraform includes [Terrascan](https://runterrascan.io), the static code analyzer for IaC maintained by Accurics.
+GitOps is a framework that takes the automation and best practices from the world of application development into the world of cloud native infrastructure. [Argo CD](https://argo-cd.readthedocs.io/en/stable/) is a GitOps CI/CDtool for Kubernetes. In a GitOps pipeline, infrastructure is codified, collaborated upon and version controlled. Like application code, infrastructure is codified and stored in a Git repo, and a tool such as Argo CD is responsible for ensuring that infrastructure remains synchronized with the git repository.
 
-## Terraform security with pre-commit-terraform
+![Argo CD workflow with Terrascan](argos_image01.png)
 
-Let’s take a look at how Terrascan can be leveraged to find Terraform security issues using pre-commit-terraform in an example. 
+*Figure 1. GitOps security using the Argo CD workflow with Terrascan policy as code.*
 
-The first step is to install pre-commit. Alternate ways of installing are available here.
-`~ ➜  pip install pre-commit`
+Integrating security testing into a Argo CD workflow is easy using Terrascan. 
 
-Once pre-commit is installed we can create the repository that will contain our Terraform templates.
-```
-~ ➜  mkdir pre-commit-tf-example
-~ ➜  git init pre-commit-tf-example
-~ ➜  cd pre-commit-tf-example
-```
+You start by setting up a single instance of Terrascan, and connecting both your Argo CD and Kubernetes cluster to it. Once connected, youre be able to leverage consistent configurations, and establish thresholds that trigger CI/CD events. For example, you can set which policy violations will break an Argo CD build or reject admission to the Kubernetes cluster.
 
-We’ll add a .pre-commit-config.yaml file in the root of our repository configured to use the terrascan git hook within the pre-commit-terraform repository. We’ll reference release v1.50.0 which is the latest release as of this writing.
+If you are only interested in code-scanning – or you have a specialized need – you can add your own policies and apply them to both your Argo repository and your Kubernetes cluster. Unlike other tools powered by the Open Policy Agent (OPA), no other adapters are necessary. Terrascan achieves this by standardizing the input around the same policy, regardless of the target. You can also use hundreds of built-in standard Terrascan policies, or mix and match as desired.
 
-```
-pre-commit-tf-example git:(main) ✗ ➜  cat .pre-commit-config.yaml
-repos:
--   repo: https://github.com/antonbabenko/pre-commit-terraform
-	rev: v1.50.0
-	hooks:
-	-   id: terrascan
-pre-commit-tf-example git:(main) ✗ ➜
-```
+Wondering why you should trigger security controls in both the CD workflow and at admission to your Kubernetes cluster? The answer is that changes to the cluster can be made by tools other than your CD tool, either by mistake or by malice. The admission controller is your defense against those threats, but for ease of maintenance and remediation, it is best not to rely on the admission controller alone for recurring workflows. Rather, it’s a best practice to leverage your CD tooling for integrated tests. 
 
+Terrascan provides 500+ out-of-the-box policies so you can scan IaC against common policy standards such as the CIS Benchmark. Terrascan leverages the OPA engine so you can easily create custom policies using the Rego query language. If you're new to Terrascan, you can play around with it in the online sandbox at [tenable.com/terrascan](https://tenable.com/terrascan).
 
-Now, we’ll run the pre-commit install, which will configure pre-commit for this particular repository using the information obtained from the .pre-commit-config.yaml file.
-```
-pre-commit-tf-example git:(master) ✗ ➜  pre-commit install
-pre-commit installed at .git/hooks/pre-commit
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-Let’s add a Terraform template with a known violation. In this case we’re going to add an AWS S3 object resource that’s missing the encryption at rest configuration.
-```
-pre-commit-tf-example git:(master) ✗ ➜  cat main.tf
-variable "bucket" {}
-
-resource "aws_s3_bucket_object" "html" {
-  bucket   	= var.bucket
-  key      	= "index.html"
-  source   	= "index.html"
-  acl      	= "public-read"
-  content_type  = "text/html"
-  etag     	= filemd5("index.html")
-}
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-Once we try to commit the Terraform template, pre-commit will execute Terrascan. Since we have not set encryption for this object, Terrascan will fail and provide feedback on what it found.
-```
-pre-commit-tf-example git:(master) ✗ ➜  git add . && git commit -m 'add terraform'
-[INFO] Initializing environment for https://github.com/antonbabenko/pre-commit-terraform.
-terrascan................................................................Failed
-- hook id: terrascan
-- exit code: 3
-
-Violation Details -
-    
-    Description	:    Ensure S3 object is Encrypted
-    File       	:    main.tf
-    Line       	:    3
-    Severity   	:    MEDIUM
-    -----------------------------------------------------------------------
-    
-
-Scan Summary -
-
-    File/Folder     	  :    /Users/therasec/pre-commit-tf-example
-    IaC Type        	  :    terraform
-    Scanned At      	  :    2021-05-10 03:32:22.117445 +0000 UTC
-    Policies Validated  :    607
-    Violated Policies   :    1
-    Low             	  :    0
-    Medium          	  :    1
-    High             	  :    0
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-Let's fix the issue by configuring server side encryption for the object and try to commit again.
-```
-pre-commit-tf-example git:(master) ✗ ➜  cat main.tf
-
-variable "bucket" {}
-
-resource "aws_kms_alias" "a" {
-  name = "alias/my-key-alias"
-}
-
-resource "aws_s3_bucket_object" "html" {
-  bucket             	= var.bucket
-  key                	= "index.html"
-  source             	= "index.html"
-  acl                	= "public-read"
-  content_type       	= "text/html"
-  etag               	= filemd5("index.html")
-  server_side_encryption = "AES256"
-  kms_key_id         	= data.aws_kms_alias.a.target_key_id
-}
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-Since we added the server_side_encryption and kms_key_id parameters, the issue should be solved and we should be able to perform `git commit`. 
-```
-pre-commit-tf-example git:(master) ✗ ➜  git add .
-pre-commit-tf-example git:(master) ✗ ➜  git commit -m 'add terraform'
-terrascan................................................................Passed
-[master (root-commit) 41138a6] adds terraform
- 2 files changed, 22 insertions(+)
- create mode 100644 .pre-commit-config.yaml
- create mode 100644 main.tf
-pre-commit-tf-example git:(master) ✗ ➜  
-```
-
-
-By using a pre-commit hook we’re able to get quick feedback into security issues affecting the code we’re trying to commit. This allows us to solve issues quickly and prevent any misconfigurations from being merged into our baseline code. Terrascan can be leveraged as a pre-commit hook and as part of your CI/CD pipelines to find Terraform security weaknesses and is included as part of the pre-commit-terraform project.
+For more information, please check out the ]Argo CD integration folder](https://github.com/tenable/terrascan/tree/master/integrations/argocd) in our public git repo, and check out the documentation. The Terrascan team is committed to building in public, and this is just the beginning of our GitOps story. We would love to hear from you on our [Github repo](https://github.com/tenable/terrascan).
