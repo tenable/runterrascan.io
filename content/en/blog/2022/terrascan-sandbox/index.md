@@ -14,7 +14,7 @@ resources:
 
 Terrascan is open-source software from Tenable that scans infrastructure-as-code (IaC) for security misconfigurations and violations before the code is provisioned into cloud-native infrastructure. Now, you can try Terrascan right from your browser with the new [Terraform Sandbox](https://tenable.com/terrascan).
 
-The Terraform Scanbox can test a variety of code, including:
+The Terraform Sandbox can test a variety of code, including:
 - Azure Resource Manager (ARM)
 - CloudFormation Templates (CFT)
 - Docker
