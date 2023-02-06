@@ -14,7 +14,7 @@ The first time using Terrascan, if the `-p` flag is not specified, Terrascan wil
 
 ## Ignoring Policies on a scan
 
-Terrascan keeps a copy of policies on your local filesystem on the `~/.terrascan/pkg/policies/opa/rego` directory. You can also specify a particular directory with rego policies to scan by using the `-p` flag. Terrascan allows you to ignore policies from scans by using the [--skip-rules](../usage/command_line_mode/#list-of-options-for-scan-command) flag or using [in-file instrumentation](../usage/in-file_instrumentation/) to skip policies on a particular resource.
+Terrascan keeps a copy of policies on your local filesystem on the `~/.terrascan/pkg/policies/opa/rego` directory. You can also specify a particular directory with rego policies to scan by using the `-p` flag. Terrascan allows you to ignore policies from scans by using the [--skip-rules](../../usage/command_line_mode/#list-of-options-for-scan-command) flag or using [in-file instrumentation](../../usage/in-file_instrumentation/) to skip policies on a particular resource.
 
 ## Adding policies
 

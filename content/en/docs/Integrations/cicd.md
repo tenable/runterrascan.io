@@ -78,7 +78,7 @@ terrascan:
 ## Argo CD Application PreSync Hooks
 
 
-Terrascan can be configured as an Argo CD job during the application sync process using [resource hooks](https://argoproj.github.io/argo-cd/user-guide/resource_hooks). The PreSync resource hook is the best way to evaluate the kubernetes deployment configuration and report any violations.
+Terrascan can be configured as an Argo CD job during the application sync process using [resource hooks](https://argo-cd.readthedocs.io/en/stable/user-guide/resource_hooks/). The PreSync resource hook is the best way to evaluate the kubernetes deployment configuration and report any violations.
 
 
 ![picture](/images/terrascan-argo-cd-pipeline.png)
